@@ -66,7 +66,7 @@ var wsirBot = function(book){
     ' / ' + book.bookA +
     '.More on ';
     var web =  'www.'+book.source+'.com';
-    var tags = ' #WSIR';
+    var tags = ' #WSIR #WhatShouldIRead #Bot #WSIRBOT';
     var params = {
         q:'',
         status:msg + web + tags,
