@@ -84,9 +84,8 @@ Twitter.post('statuses/update', params, function(err,data){
     // If error catch error
     }else{
         // log.info('Oww snap! Twitter Error: ' + err + ' but I will handle it the best i can...');
-        console.log('Ended... Restarting ' + err);
-        // log.info('Twitter Ended ...'+ err + ' '+'Restarting...' );
-        searchBook();
+        console.log('Ended... ERROR ' + err);
+        // log.info('Twitter Ended ...'+ err);
     }
 });
 }
