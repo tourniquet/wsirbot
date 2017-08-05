@@ -46,11 +46,12 @@ function searchBook(){
         book.source = siteSource;
         // Launch the application
         wsirBot(book);
+
     }).catch((err) => {
       // Handle any error that occurred in any of the previous
       // promises in the chain.
-        // log.info(' ERROR '+err);
-        console.log('Ended ');
+      // log.info(' ERROR '+err);
+         console.log('Ended ');
     });
 }
 
@@ -58,12 +59,13 @@ function searchBook(){
 
 // create the twitter function
 var wsirBot = function(book){
+    console.log('#WSIR Working...');
     // Set the params for the search
     var params = {
         q:'',
-        status:"Today's pick: "+ book.bookN +
-        ' by ' + book.bookA +
-        '. Available at ' + 'www.'+book.source+'.com'+
+        status:"Today's pick:"+ book.bookN +
+        ' / ' + book.bookA +
+        '.Available at ' + 'www.'+book.source+'.com'+
         ' #WSIR',
         lang: 'en',
     }
