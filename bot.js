@@ -65,11 +65,11 @@ var wsirBot = function(book){
     var msg = "Today's pick: "+ book.bookN +
     ' / ' + book.bookA +
     '.More on ';
-    var source =  'www.'+book.source+'.com';
+    var web =  'www.'+book.source+'.com';
     var tags = ' #WSIR';
     var params = {
         q:'',
-        status:msg + srouce + tags,
+        status:msg + web + tags,
         lang: 'en',
     }
 
