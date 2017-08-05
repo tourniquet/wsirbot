@@ -52,7 +52,7 @@ function searchBook(){
       // Handle any error that occurred in any of the previous
       // promises in the chain.
       // log.info(' ERROR '+err);
-         console.log('Ended ');
+         console.log('Ended ' + err);
     });
 }
 
