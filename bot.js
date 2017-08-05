@@ -25,11 +25,12 @@ var book = {
 }
 
 function searchBook(){
-    var nr = Math.floor(Math.random() * authorList.list.length);
+    var books = authorList.list[0].books;
+    var nr = Math.floor(Math.random() * books.length);
 
     // Query for GoodRead search
     const query = {
-        q:authorList.list[nr],
+        q:books[nr],
         page:'',
         type:'all'
     }
@@ -61,12 +62,14 @@ function searchBook(){
 var wsirBot = function(book){
     console.log('#WSIR Working...');
     // Set the params for the search
+    var msg = "Today's pick: "+ book.bookN +
+    ' / ' + book.bookA +
+    '.More on ';
+    var source =  'www.'+book.source+'.com';
+    var tags = ' #WSIR';
     var params = {
         q:'',
-        status:"Today's pick:"+ book.bookN +
-        ' / ' + book.bookA +
-        '.Available at ' + 'www.'+book.source+'.com'+
-        ' #WSIR',
+        status:msg + srouce + tags,
         lang: 'en',
     }
 
@@ -81,7 +84,7 @@ Twitter.post('statuses/update', params, function(err,data){
     // If error catch error
     }else{
         // log.info('Oww snap! Twitter Error: ' + err + ' but I will handle it the best i can...');
-        console.log('Ended... Restarting');
+        console.log('Ended... Restarting ' + err);
         // log.info('Twitter Ended ...'+ err + ' '+'Restarting...' );
         searchBook();
     }
