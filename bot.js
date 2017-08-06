@@ -45,6 +45,7 @@ function searchBook(){
         book.bookA = bookAuthor;
         book.bookN = bookName;
         book.source = siteSource;
+	console.log('Book: '+ book);    
         // Launch the application
         wsirBot(book);
 
@@ -75,19 +76,19 @@ var wsirBot = function(book){
 
     // for more parametes, see: https://dev.twitter.com/rest/reference/get/search/tweets
 
-// Post a twitt
-Twitter.post('statuses/update', params, function(err,data){
-    // Check if error is present, if not continue
-    if(!err){
-        // log.info('Twitter INFO '+'Incoming data: ' + data.id + ' ' + data);
-        console.log('Twitter INFO '+'Incoming data: ' + data.id + ' ' + data);
+	// Post a twitt
+	Twitter.post('statuses/update', params, function(err,data){
+    	// Check if error is present, if not continue
+    	if(!err){
+        	// log.info('Twitter INFO '+'Incoming data: ' + data.id + ' ' + data);
+        	console.log('Twitter INFO '+'Incoming data: ' + data.id + ' ' + data);
     // If error catch error
-    }else{
-        // log.info('Oww snap! Twitter Error: ' + err + ' but I will handle it the best i can...');
-        console.log('Ended... ERROR ' + err);
-        // log.info('Twitter Ended ...'+ err);
-    }
-});
+    	}else{
+	        // log.info('Oww snap! Twitter Error: ' + err + ' but I will handle it the best i can...');
+        	console.log('Ended... ERROR ' + err);
+        	// log.info('Twitter Ended ...'+ err);
+    		}
+	});
 }
 
 // Init app
