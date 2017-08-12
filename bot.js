@@ -61,7 +61,7 @@ function searchBook(){
 
 // create the twitter function
 var wsirBot = function(book){
-    console.log('#WSIR Working...');
+    console.log('#WSIR Working... ' + Date.now());
     // Set the params for the search
     var msg = "Today's pick: "+ book.bookN +
     ' / ' + book.bookA +
@@ -92,7 +92,7 @@ var wsirBot = function(book){
 }
 
 setInterval(() => {
-  console.log('Heroku process running...' + new Date.now());
+  console.log('Heroku process running...' + Date.now());
 }, 6000);
 
 // Init app
