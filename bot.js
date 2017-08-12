@@ -92,7 +92,7 @@ var wsirBot = function(book){
 }
 
 setInterval(() => {
-  console.log('Heroku process running...');
+  console.log('Heroku process running...' + new Date.now());
 }, 6000);
 
 // Init app

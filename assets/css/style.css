@@ -1,0 +1,72 @@
+body, html{
+  width:100%;
+  height:100%;
+  background-image: url('../img/bg.png');
+  background-size: cover;
+  background-repeat: no-repeat;
+  color:#f2f2f2;
+}
+*{
+  color:#f9f9f9;
+  text-shadow: 1px 1px 2px #222;
+}
+
+h1 > a {
+  text-decoration: none;
+  color:#f2f2f2;
+  font-weight: bold;
+  transition:1s all linear;
+
+}
+h1:hover > a{
+  transition:1s all linear;
+  color:#222;
+  text-shadow: 1px 1px 2px #f9f9f9;
+}
+
+.social{
+  list-style-type: none;
+}
+
+
+.social > li{
+  display: inline-block;
+  margin:15px;
+  transition:1s all linear;
+}
+
+.social > li:hover > i{
+  transition:1s all linear;
+  color:#222;
+  text-shadow: 1px 1px 2px #f9f9f9;
+}
+
+.social > p > a {
+  text-decoration: none;
+  color:#f2f2f2;
+  font-weight: bold;
+  transition:1s all linear;
+  font-size: 0.9rem;
+}
+
+.social > p:hover > a{
+  transition:1s all linear;
+  color:#222;
+  text-shadow: 1px 1px 2px #f9f9f9;
+}
+
+.twitter-follow-button{
+  transition:1s all linear;
+  color:#222;
+  text-shadow: 1px 1px 2px #f9f9f9;
+}
+
+.twitter-follow-button:hover{
+  transition:1s all linear;
+  color:#f9f9f9;
+  text-shadow: 1px 1px 2px #222;
+}
+
+.created{
+  font-size:0.8rem;
+}

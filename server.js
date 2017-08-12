@@ -3,9 +3,12 @@ var app = express();
 var bot = require('./bot.js');
 var port = process.env.PORT;
 
-app.get('/', (res,req) => {
-  res.send('Hello world' + bot.bookN);
-});
+app.use(express.static(__dirname + '/public'));
+
+
+app.get('/', function (req, res) {
+  res.send('index.html');
+})
 
 app.listen(port || 5000);
-console.log('Running');
+console.log('Started web service at ' + new Date.now());
