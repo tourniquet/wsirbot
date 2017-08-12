@@ -45,7 +45,7 @@ function searchBook(){
         book.bookA = bookAuthor;
         book.bookN = bookName;
         book.source = siteSource;
-	console.log('Book: '+ book);
+	       console.log('Book picked: '+ bookAuthor + ' - ' + bookName);
         // Launch the application
         wsirBot(book);
 
