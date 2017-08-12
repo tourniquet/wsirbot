@@ -64,8 +64,16 @@ var wsirBot = function(book){
     console.log('#WSIR Working... ' + Date.now());
     // Set the params for the search
     var msg = "Today's pick: "+ book.bookN +
-    ' / ' + book.bookA +
-    '.More on ';
+    '--' + book.bookA +
+    ' @ ';
+    if(msg.length >= 190){
+      const len = book.bookA.length / 2;
+      let authorStr = book.bookA.substring(0, len);
+      authorStr+='...';
+      msg = "Today's pick: "+ book.bookN +
+      '--' + authorStr +
+      ' @ ';
+    }
     var web =  'www.'+book.source+'.com';
     var tags = ' #WSIR #WhatShouldIRead #Bot #WSIRBOT';
     var params = {
