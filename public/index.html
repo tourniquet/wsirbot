@@ -18,6 +18,7 @@
       background-repeat: no-repeat;
       color:#f2f2f2;
     }
+
     *{
       color:#f9f9f9;
       text-shadow: 1px 1px 2px #222;
@@ -30,10 +31,16 @@
       transition:1s all linear;
 
     }
+
     h1:hover > a{
       transition:1s all linear;
       color:#222;
       text-shadow: 1px 1px 2px #f9f9f9;
+    }
+
+    .title{
+        margin-top:55px;
+        margin-bottom:55px;
     }
 
     .social{
@@ -87,24 +94,26 @@
 </head>
 <body>
 
-    <div class="container-fluid h-100">
+    <div class="container h-100">
       <div class="row h-100">
-        <div class="col-6 mr-auto ml-auto text-left align-self-center">
-          <h1>Welcome to <a href="#">#WSIRBOT</a></span>.</h1>
+        <div class="col-12 mr-auto ml-auto text-left align-self-center">
+          <h1 class="title">Welcome to <a href="#">#WSIRBOT</a></span>.</h1>
           <h4>You do not know what to read?<br> No problem!</h4>
           <h5>We are here to help you!</h5>
           <p>If you like reading good books and want to know more about the latests and best books of all time, why not follow me on twitter and see what I'm all about :)</p>
-          <div class="suggestion text-left">
-             <i class="fa fa-2x fa-twitter" aria-hidden="true"><a href="https://twitter.com/wsirbot" class="twitter-follow-button" data-show-count="false">@wsirbot</a><script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script></i>
-          </div>
         </div>
+
+        <div class="col-12 align-self-center text-center">
+          <a href="https://twitter.com/wsirbot" class="twitter-follow-button" data-size="large" data-show-count="false">@wsirbot</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script></i>
+        </div>
+
         <div class="col-12 align-self-end text-center">
           <div class="col-6 mr-auto ml-auto">
             <ul class="social">
               <li><i class="fa fa-2x fa-facebook" aria-hidden="true"></i></li>
               <li><i class="fa fa-2x fa-envelope-o" aria-hidden="true"></i></li>
-            <p>powerd by <a href="www.vagabondlabs.com">vagabondlabs.com</a></p>
-            <p class="created">created by <i class="fa fa-github" aria-hidden="true"><a href="www.github.com/vzapo"></a></i>
+            <p>powerd by <a href="https://www.vagabondlabs.com" target="_blank">vagabondlabs.com</a></p>
+            <p class="created">created by <i class="fa fa-github" aria-hidden="true"><a href="https://www.github.com/vzapo" target="_self"></a></i>
 </p>
           </ul>
           </div>

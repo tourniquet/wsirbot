@@ -1,8 +1,8 @@
 //Require dependecy
 var twit = require('twit');
+var config = require("./config.js");
 const goodreads = require('goodreads-api-node');
 const authorList = require('./authors.js');
-var config = require("./config.js");
 
 // create a rolling file logger based on date/time that fires process events
 // const opts = {
@@ -108,5 +108,3 @@ searchBook();
 
 // Repeat every 24 hour
 setInterval(searchBook, 86400000);
-
-module.exports = book;
