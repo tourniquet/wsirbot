@@ -45,7 +45,7 @@ function searchBook(){
         book.bookA = bookAuthor;
         book.bookN = bookName;
         book.source = siteSource;
-	console.log('Book: '+ book);    
+	console.log('Book: '+ book);
         // Launch the application
         wsirBot(book);
 
@@ -90,6 +90,10 @@ var wsirBot = function(book){
     		}
 	});
 }
+
+setInterval(() => {
+  console.log('Heroku process running...');
+}, 6000);
 
 // Init app
 searchBook();
