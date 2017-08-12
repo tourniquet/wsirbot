@@ -100,3 +100,5 @@ searchBook();
 
 // Repeat every 24 hour
 setInterval(searchBook, 86400000);
+
+module.exports = book;
