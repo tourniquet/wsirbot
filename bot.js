@@ -66,7 +66,7 @@ var wsirBot = function(book){
     var msg = "Today's pick: "+ book.bookN +
     '--' + book.bookA +
     ' @ ';
-    if(msg.length >= 190){
+    if(msg.length >= 140){
       const len = book.bookA.length / 2;
       let authorStr = book.bookA.substring(0, len);
       authorStr+='...';
