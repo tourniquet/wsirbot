@@ -1,9 +1,7 @@
 var express = require('express');
 var app = express();
-var bot = require('./bot.js');
 var port = process.env.PORT;
 
-var time =
 app.use(express.static(__dirname + '/public'));
 
 
