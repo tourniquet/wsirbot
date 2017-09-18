@@ -1,0 +1,73 @@
+$bg:#1DDCED;
+$clr1:#f2f2f2;
+$clr2:#222;
+
+@font-face {
+  font-family: Garamond;
+  src: url(/assets/fonts/garamond.ttf);
+}
+
+
+/* The animation code */
+@keyframes fadein {
+    0% { opacity:0; }
+    66% { opacity:0; }
+    100% { opacity:1; }
+}
+
+html,body{
+    background-color: $bg;
+    width: 100%;
+    background-image: url('../imgs/wsir.svg');
+    background-position: center bottom;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    font-family:Garamond;
+    color:$clr1;
+    text-shadow: 1px 1px 2px $clr2;
+}
+
+.text{
+  font-size:1.5em;
+}
+
+.header{
+  margin-top:-125px;
+  font-size:2.5em;
+}
+
+.title{
+  font-size:2em;
+}
+
+.logo{
+  height:100px;
+  margin-top:25px;
+  font-size:3em;
+  letter-spacing:5px;
+  color:$clr1;
+}
+
+.social {
+  font-size:0.9em;
+  & > div > a > i {
+    margin-left:5px;
+    margin-right:5px;
+  }
+}
+
+a{
+  &:hover{
+    text-decoration:none;
+  }
+  color:$clr1;
+  &:hover{
+    color:$clr1;
+  }
+}
+
+footer{
+  position:fixed;
+  bottom:0;
+  width:100%;
+}

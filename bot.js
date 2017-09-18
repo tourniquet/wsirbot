@@ -1,110 +1,87 @@
 //Require dependecy
 var twit = require('twit');
-var config = require("./config.js");
-const goodreads = require('goodreads-api-node');
-const authorList = require('./authors.js');
-
-// create a rolling file logger based on date/time that fires process events
-// const opts = {
-//     errorEventName:'error',
-//     logDirectory:'./logs', // NOTE: folder must exist and be writable...
-//     fileNamePattern:'roll-<DATE>.log',
-//     dateFormat:'YYYY.MM.DD'
-// };
-//
-// const log = require('simple-node-logger').createRollingFileLogger( opts );
+const config = require("./config.js");
+const getBook = require('./goodread.js');
+var http = require("http");
 
 // Pass the configuration to Twitter app
 var Twitter = new twit(config.config_twitter);
-var grclient = goodreads(config.config_goodreads);
 
-var book = {
-    bookA : '',
-    bookN : '',
-    bookS : ''
-}
-
-function searchBook(){
-    var books = authorList.list[0].books;
-    var nr = Math.floor(Math.random() * books.length);
-
-    // Query for GoodRead search
-    const query = {
-        q:books[nr],
-        page:'',
-        type:'all'
-    }
-
-    grclient.searchBooks(query).then(response => {
-        var randomNrB = Math.floor(Math.random() * response.search.results.work.length);
-        var bookName = response.search.results.work[randomNrB].best_book.title;
-        var bookAuthor = response.search.results.work[randomNrB].best_book.author.name;
-        var siteSource = response.search.source;
-        // log.info(' GoodRead INFO '+'Author choosen today:' + bookAuthor);
-        // log.info(' GoodRead INFO '+'Book choosen today:' + bookName);
-        book.bookA = bookAuthor;
-        book.bookN = bookName;
-        book.source = siteSource;
-	       console.log('Book picked: '+ bookAuthor + ' - ' + bookName);
-        // Launch the application
-        wsirBot(book);
-
-    }).catch((err) => {
-      // Handle any error that occurred in any of the previous
-      // promises in the chain.
-      // log.info(' ERROR '+err);
-         console.log('Ended ' + err);
+// BOT =========================
+var wsirBot = function(){
+    let date = new Date();
+    
+    console.log(date.getHours() + ":" + date.getMinutes() + ' #WSIR Working... ');
+    
+    getBook(function(data){
+        var year = date.getFullYear();
+        var month;
+        if(date.getMonth >=10){ date.getMonth()}else{month = "0"+date.getMonth()};
+        var day = date.getDate();
+        const time = year + "-"+month+ "-"+day;        
+        var book = data;
+        var last_tweet_date;
+        
+        console.log(data);
+        
+        // Set the params for the search
+        var msg = "Today's pick: "+ book.bookN +
+        '--' + book.bookA +
+        ' @ ';
+        
+        if(typeof msg.length !== "number"){
+            wsirBot();
+        }
+        
+        if(msg.length >= 140){
+          const len = book.bookA.length / 2;
+          let authorStr = book.bookA.substring(0, len);
+          authorStr+='...';
+          msg = "Today's pick: "+ book.bookN +
+          '-' + authorStr +
+          ' @ ';
+          console.log('New MSG:'+msg);
+          if(msg.length >= 140){
+              wsirBot();
+          }
+        }
+        
+        var web =  'www.'+book.source+'.com';
+        var tags = ' #WSIR #WhatShouldIRead #BOT';
+        
+        var params = {
+            q:'',
+            status:msg + web + tags,
+            lang: 'en',
+        }
+        
+        Twitter.get('statuses/user_timeline', {screen_name: 'wsirbot', count:1}, function(err, data, response) {
+            if(err){console.log(err)}
+            console.log(date.getHours() + ":" + date.getMinutes() + ' Checking for tweet in the last 24h...');
+            var last_tweet_date = data[0].created_at.substring(8,11);
+            if(last_tweet_date == date.getDate()){
+                console.log('Found tweet in the last 24h,skip tweeting now!');
+            }else{
+                console.log('No tweet found in the last 24h, tweeting now!');
+                // Post a tweet
+            	Twitter.post('statuses/update', params, function(err,data){
+            	    var date = new Date();
+                	// Check if error is present, if not continue
+                	if(!err){
+                    	console.log(date.getHours() + ":" + date.getMinutes() + ' Twitter INFO '+'Incoming data: ' + data.id + ' ' + data);
+                // If error catch error
+                	}else{
+                    	console.log(date.getHours() + ":" + date.getMinutes() + ' Ended...');
+                    	throw err;
+                	}
+            	});
+            }
+        })
     });
 }
 
-// BOT =========================
-
-// create the twitter function
-var wsirBot = function(book){
-    console.log('#WSIR Working... ' + Date.now());
-    // Set the params for the search
-    var msg = "Today's pick: "+ book.bookN +
-    '--' + book.bookA +
-    ' @ ';
-    if(msg.length >= 140){
-      const len = book.bookA.length / 2;
-      let authorStr = book.bookA.substring(0, len);
-      authorStr+='...';
-      msg = "Today's pick: "+ book.bookN +
-      '--' + authorStr +
-      ' @ ';
-    }
-    var web =  'www.'+book.source+'.com';
-    var tags = ' #WSIR #WhatShouldIRead #Bot #WSIRBOT';
-    var params = {
-        q:'',
-        status:msg + web + tags,
-        lang: 'en',
-    }
-
-    // for more parametes, see: https://dev.twitter.com/rest/reference/get/search/tweets
-
-	// Post a twitt
-	Twitter.post('statuses/update', params, function(err,data){
-    	// Check if error is present, if not continue
-    	if(!err){
-        	// log.info('Twitter INFO '+'Incoming data: ' + data.id + ' ' + data);
-        	console.log('Twitter INFO '+'Incoming data: ' + data.id + ' ' + data);
-    // If error catch error
-    	}else{
-	        // log.info('Oww snap! Twitter Error: ' + err + ' but I will handle it the best i can...');
-        	console.log('Ended... ERROR ' + err);
-        	// log.info('Twitter Ended ...'+ err);
-    		}
-	});
-}
-
-setInterval(() => {
-  console.log('Heroku process running...' + Date.now());
-}, 6000);
-
-// Init app
-searchBook();
-
+// Launch the application
+wsirBot();
+    
 // Repeat every 24 hour
-setInterval(searchBook, 86400000);
+var repeat_posting = setInterval(wsirBot, 86400000);
