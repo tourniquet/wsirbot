@@ -1,7 +1,6 @@
 let config = require("./config.js");
 let goodreads = require('goodreads-api-node');
 const grclient = goodreads(config.config_goodreads);
-const alphabet = 'abcdefghijklmnopqrstuvwxyz'.split('');
 
 var book = {
     bookA : '',
@@ -9,7 +8,8 @@ var book = {
     bookS : ''
 }
 
-var searchBook = function(callback){
+var searchBook = function(list,callback){
+    var alphabet = list.split('');
     var date = new Date();
     var nr = Math.floor(Math.random() * alphabet.length);
     var letter = alphabet[nr];
@@ -29,18 +29,15 @@ var searchBook = function(callback){
             console.log('Rating of book: '+response.search.results.work[randomNrB].average_rating);
         }
         while (response.search.results.work[randomNrB].average_rating <= 4);
-        
         var bookName = response.search.results.work[randomNrB].best_book.title;
         var bookAuthor = response.search.results.work[randomNrB].best_book.author.name;
-        var siteSource = response.search.source;
-        
+        var bookId = response.search.results.work[randomNrB].best_book.id._;
         
         book.bookA = bookAuthor;
         book.bookN = bookName;
-        book.source = siteSource;
+        book.bookS = "https://www.goodreads.com/book/show/"+bookId;
         
 	    console.log(date.getHours() + ":" + date.getMinutes() + ' Book picked: '+ bookAuthor + ' - ' + bookName);
-	    
         callback(book);
 
     }).catch((err) => {
