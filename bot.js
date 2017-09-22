@@ -60,7 +60,7 @@ var wsirBot = function(alphabet) {
                         wsirBot();
                     }
                 }
-
+                
                 msg += book.bookS;
 
                 var tags = ' #WSIR #WhatShouldIRead #BOT';

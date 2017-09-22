@@ -1,41 +1,43 @@
+@keyframes cloud-animation {
+  0% {
+    left: 0; }
+  50% {
+    left: 100%; }
+  100% {
+    left: 0%; } }
 @font-face {
   font-family: Garamond;
   src: url(/assets/fonts/garamond.ttf); }
-/* The animation code */
-@keyframes fadein {
-  0% {
-    opacity: 0; }
-  66% {
-    opacity: 0; }
-  100% {
-    opacity: 1; } }
 html, body {
+  overflow-x: hidden;
   background-color: #1DDCED;
   width: 100%;
-  background-image: url("../imgs/wsir.svg");
-  background-position: center bottom;
+  height: 100%;
+  background-image: url("../imgs/bg.svg");
+  background-position: bottom;
   background-attachment: fixed;
+  background-size: 100%;
   background-repeat: no-repeat;
   font-family: Garamond;
   color: #f2f2f2;
-  text-shadow: 1px 1px 2px #222; }
+  text-shadow: 1px 1px 2px #222;
+  font-size: 13px; }
 
 .text {
-  font-size: 1.5em; }
+  font-size: 1.5rem; }
 
 .header {
-  margin-top: -125px;
-  font-size: 2.5em; }
+  font-size: 2.5rem; }
 
 .title {
-  font-size: 2em; }
+  font-size: 2rem; }
 
 .logo {
   height: 100px;
-  margin-top: 25px;
-  font-size: 3em;
+  margin: 25px;
+  font-size: 1.1rem;
   letter-spacing: 5px;
-  color: #f2f2f2; }
+  color: #222; }
 
 .social {
   font-size: 0.9em; }
@@ -48,11 +50,115 @@ a {
   a:hover {
     text-decoration: none; }
   a:hover {
-    color: #f2f2f2; }
+    color: #ccc; }
 
 footer {
-  position: fixed;
   bottom: 0;
   width: 100%; }
+
+/* =============
+   Clouds
+   ============= */
+.cloud {
+  display: inline-block;
+  padding: 15px;
+  position: relative;
+  width: 200px;
+  height: 75px;
+  background: #f2f2f2;
+  border-radius: 100px; }
+  .cloud:after {
+    content: "";
+    position: absolute;
+    width: 75px;
+    height: 75px;
+    top: -25px;
+    left: 25px;
+    background: #f2f2f2;
+    border-top-left-radius: 50%;
+    border-top-right-radius: 50%;
+    border-bottom-left-radius: 50%; }
+  .cloud:before {
+    content: "";
+    position: absolute;
+    width: 100px;
+    top: -40px;
+    height: 100px;
+    background: #f2f2f2;
+    right: 15px;
+    border-top-left-radius: 50%;
+    border-top-right-radius: 50%;
+    border-bottom-right-radius: 50%; }
+  .cloud.one {
+    top: 50px;
+    animation: cloud-animation 40s linear 0s infinite alternate; }
+  .cloud.two {
+    opacity: 0.8;
+    top: 75px;
+    animation: cloud-animation 50s linear 0s infinite alternate; }
+  .cloud.three {
+    opacity: 0.9;
+    top: 60px;
+    animation: cloud-animation 30s linear 0s infinite alternate; }
+
+/* ============================================================================================================================
+== OVER THOUGHT BUBBLE, EMPTY, WITH BORDER (more CSS3)
+** ============================================================================================================================ */
+.oval-thought-border {
+  position: relative;
+  padding: 70px 30px;
+  margin: 1em auto 80px;
+  border: 3px solid #222;
+  text-align: center;
+  color: #333;
+  text-shadow: 0px 0px 0px;
+  -moz-border-radius: 50%;
+  border-radius: 50%;
+  background: white; }
+  .oval-thought-border:before {
+    content: "";
+    position: absolute;
+    z-index: 10;
+    bottom: -40px;
+    right: 100px;
+    width: 50px;
+    height: 50px;
+    border: 3px solid #222;
+    background: rgba(255, 255, 255, 0.9);
+    /* css3 */
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    border-radius: 50%;
+    /* reduce the damage in FF3.0 */
+    display: block; }
+  .oval-thought-border:after {
+    background: rgba(255, 255, 255, 0.8);
+    content: "";
+    position: absolute;
+    z-index: 10;
+    bottom: -60px;
+    right: 50px;
+    width: 25px;
+    height: 25px;
+    border: 3px solid #222;
+    /* css3 */
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    border-radius: 50%;
+    /* reduce the damage in FF3.0 */
+    display: block; }
+
+@media all and (min-width: 998px) {
+  html, body {
+    background-size: cover; }
+
+  .oval-thought-border {
+    max-width: 50%; } }
+@media all and (max-width: 736px) {
+  .two {
+    display: none; }
+
+  .three {
+    display: none; } }
 
 /*# sourceMappingURL=main.css.map */

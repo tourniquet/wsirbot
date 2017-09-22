@@ -5,7 +5,7 @@ const alphabet = 'abcdefghijklmnopqrstuvwxyz';
 describe('Get Books', function(){
   describe('Test 1:', function(){
     it('should have a book function', function(){
-        assert.equal(typeof book, 'function');
+        assert.equal(typeof book, 'function'); 
     });
   })
   describe('Test 2:',function(){
