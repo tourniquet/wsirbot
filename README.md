@@ -1,4 +1,4 @@
-# wsirbot
+# wsirbot / WhatShouldIRead
 
 *What should I Read?*
 
