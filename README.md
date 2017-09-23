@@ -1,7 +1,18 @@
 # wsirbot
-A simple twitter bot that scans Goodread database for authors and picks a book with a rating > 4 and post everyday. If you like it feel free to use the code or get inspiration from it. 
 
-More info on how I did it, soon!
+*What should I Read?*
+
+Don't ask yourself this question no more. There is something to help you now. This Twitter bot will help you pick a good book every day.
+
+**How it does it?**
+
+Simple: Once a day,everyday it will search the <a href="www.goodreads.com">Goodreads</a> database, using their API and will select one random author, chosing one of his book with that has a rating more tahn 3.8(used to be 4 but I found a lot of good books have 3.8 or 3.9).
+
+This bot was made using <a href="www.nodejs.com">nodejs</a>,<a href="https://www.npmjs.com/package/goodreads-api-node">goodread-api-node package</a>, <a href="https://www.npmjs.com/package/twit
+">twit package</a> and hosted on <a href="www.heroku.com">heroku</a> and of course the most important a bit of love and dedication :)  
+
+Feel free to contact me for any suggestions or chat.
+___
 
 Copyright (c) 2017 Victor Zaporojan 
 
