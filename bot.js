@@ -60,10 +60,10 @@ var wsirBot = function(alphabet) {
                         wsirBot();
                     }
                 }
-                
+
                 msg += book.bookS;
 
-                var tags = ' #WSIR #WhatShouldIRead #BOT';
+                var tags = ' #WSIR #book #WhatShouldIRead';
 
                 // Set the params for the search
                 var params = {
