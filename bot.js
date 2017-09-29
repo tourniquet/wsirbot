@@ -1,7 +1,7 @@
 //Require dependecy
 var twit = require('twit');
 const config = require("./config.js");
-const getBook = require('./goodread.js');
+const goodreads = require('./goodread.js');
 
 const letters = 'abcdefghijklmnopqrstuvwxyz';
 
@@ -30,7 +30,7 @@ var wsirBot = function(alphabet) {
             console.log('No tweet found in the last 24h, tweeting now!...');
 
             // Get book
-            getBook(alphabet, function(data) {
+            goodreads.getBook(alphabet, function(data) {
                 var year = date.getFullYear();
                 var month;
                 if (date.getMonth >= 10) {
@@ -94,6 +94,12 @@ var wsirBot = function(alphabet) {
 
 // Launch the application
 wsirBot(letters);
+
+// Hack for heroku to keep app alive and log any errors
+var logging = setInterval(function(){
+    var date = new Date();
+    console.log(date.getHours() + ":" + date.getMinutes() + "Bot Working... Not idle!")
+},1740000)
 
 // Repeat every 24 hour / 86400000
 var repeat_posting = setInterval(function() {

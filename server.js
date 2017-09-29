@@ -1,4 +1,5 @@
 var express = require('express');
+var goodreads = require("./goodread.js");
 var twit = require('twit');
 var path = require('path');
 
@@ -26,8 +27,11 @@ app.get('/', function (req, res) {
         if(err){ console.log(err) }
         var id = data[0].id;
         var text = data[0].text.substring(13,data[0].text.indexOf('@'));
+        var title = text.split(',')[0];
         console.log(time+ ': Got tweet at '+ time + " with >>\n" + "ID: "+id + "\nText: "+text);
-        res.render('index',{text});   
+        goodreads.getCover(title,function(cover){
+            res.render('index',{cover}); 
+        });
     });
 })
 
