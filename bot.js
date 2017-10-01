@@ -104,6 +104,6 @@ var logging = setInterval(function(){
 // Repeat every 24 hour / 86400000
 var repeat_posting = setInterval(function() {
     wsirBot(letters);
-}, min_post);
+}, min_repost);
 
 module.exports = wsirBot;
