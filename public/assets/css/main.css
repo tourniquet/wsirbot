@@ -164,7 +164,7 @@ footer {
 **********************/
 .ribbon {
   position: relative;
-  background: #4C9F24;
+  background: #77460C;
   color: #f2f2f2;
   text-align: center;
   padding: 5px;
@@ -173,14 +173,14 @@ footer {
   .ribbon .ribbon-content > .seam {
     width: 100%;
     padding: 5px;
-    border: 1px dashed #f2f2f2;
+    border: 1px dashed #CB7C22;
     height: 100%; }
   .ribbon .ribbon-content:before, .ribbon .ribbon-content:after {
     content: "";
     position: absolute;
     display: block;
     border-style: solid;
-    border-color: #356600 transparent transparent transparent;
+    border-color: #5d3709 transparent transparent transparent;
     bottom: -1em; }
   .ribbon .ribbon-content:after {
     right: 0;
