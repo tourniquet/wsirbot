@@ -1,10 +1,11 @@
 //Require dependecy
 var twit = require('twit');
-const config = require("./config.js");
-const goodreads = require('./goodread.js');
+let config = require("./config.js");
+let goodreads = require('./goodread.js');
 
 const letters = 'abcdefghijklmnopqrstuvwxyz';
-
+const min_log = 1000 * 60 * 5;
+const min_repost = 1000 * 60 * 60 * 24;
 // Pass the configuration to Twitter app
 var Twitter = new twit(config.config_twitter);
 
@@ -47,29 +48,28 @@ var wsirBot = function(alphabet) {
                 var msg = "Today's pick:" + book.bookN +
                     '-' + book.bookA +
                     ' @ ';
-
-                if (msg.length >= 140) {
-                    const len = book.bookA.length / 2;
-                    let authorStr = book.bookA.substring(0, len);
-                    authorStr += '...';
-                    msg = "Today's pick: " + book.bookN +
-                        '-' + authorStr +
-                        ' @ ';
-                    console.log('New MSG:' + msg);
-                    if (msg.length >= 140) {
-                        wsirBot();
-                    }
-                }
-
                 msg += book.bookS;
-
-                var tags = ' #WSIR #book #WhatShouldIRead';
+                const tags = ' #WSIR #book #WhatShouldIRead';
 
                 // Set the params for the search
                 var params = {
                     q: '',
                     status: msg + tags,
                     lang: 'en',
+                }
+
+                if (params.status.length >= 140) {
+                    const len = book.bookA.length / 2;
+                    let authorStr = book.bookA.substring(0, len);
+                    authorStr += '...';
+                    params.status = "Today's pick: " + book.bookN +
+                        '-' + authorStr +
+                        ' @ ';
+                    console.log('Got new status:' + params.status);
+                    if (params.status.length >= 140) {
+                        console.log('New status still to long, getting a new one:' + params.status);
+                        wsirBot();
+                    }
                 }
 
                 // Post the tweet
@@ -98,12 +98,12 @@ wsirBot(letters);
 // Hack for heroku to keep app alive and log any errors
 var logging = setInterval(function(){
     var date = new Date();
-    console.log(date.getHours() + ":" + date.getMinutes() + "Bot Working... Not idle!")
-},1740000)
+    console.log(date.getHours() + ":" + date.getMinutes() + "#WSIR BOT active!...")
+},min_log)
 
 // Repeat every 24 hour / 86400000
 var repeat_posting = setInterval(function() {
     wsirBot(letters);
-}, 86400000);
+}, min_post);
 
 module.exports = wsirBot;

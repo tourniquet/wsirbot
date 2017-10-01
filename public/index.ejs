@@ -12,54 +12,69 @@
 	<link href="/assets/css/main.css" rel="stylesheet">
 </head>
 <body>
-	<div class="container h-100">
-		<div class="row h-100">
+
+	<script>
+  window.fbAsyncInit = function() {
+    FB.init({
+      appId            : '452089435187307',
+      autoLogAppEvents : true,
+      xfbml            : true,
+      version          : 'v2.10'
+    });
+    FB.AppEvents.logPageView();
+  };
+</script>
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v2.10&appId=452089435187307";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+	<div class="container-fluid">
+		<div class="row">
 			<div class="col-12">
-				<div class="col-12">
-					<div class="cloud one"></div>
-					<div class="cloud two"></div>
-					<div class="cloud three"></div>
+				<div class="cloud one"></div>
+				<div class="cloud two"></div>
+				<div class="cloud three"></div>
+			</div>
+			<div class="w-100"></div>
+			<div class="col-sm-12 col-md-12 col-lg-6">
+				<div class="ribbon">
+				   <div class="ribbon-content">
+						<div class="seam">
+				   		<h1>Today's pick</h1>
+						</div>
+				   </div>
+				</div>
+				<div class="book mr-auto ml-auto">
+					<div class="book-cover"></div>
+					<div class="book-top"></div>
+					<div class="book-right"></div>
 				</div>
 			</div>
-			<div class="col-12 suggestion align-self-center text-center">
-				<div class="row">
-					<div class="col-sm-12 col-md-12 col-lg-6">
-						<div class="ribbon">
-						   <span class="ribbon-content">
-						   	<p>Today's pick</p>
-						   </span>
-						</div>
-						<div class="book mr-auto ml-auto">
-						<div class="book-cover"></div>
-						<div class="book-top"></div>
-						<div class="book-right"></div>
-						</div>
+			<div class="w-100"></div>
+			<div class="col-sm-12 col-md-12 col-lg-6 text-center">
+				<div class="ribbon">
+					 <div class="ribbon-content">
+						 <div class="seam">
+					 		<a class="twitter-timeline" data-height="300" href="https://twitter.com/wsirbot?ref_src=twsrc%5Etfw">Tweets by wsirbot</a> <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+					 	</div>
+					 </span>
 					</div>
 				</div>
 			</div>
-			<div class="col-12  align-self-bottom text-center">
-				<div class="row">
-						<div class="col-sm-12 col-md-12 col-lg-6 twitter text-center">
-							<div class="ribbon">
-								 <span class="ribbon-content">
-								 	<p>
-								 		<a class="twitter-timeline" data-height="300" href="https://twitter.com/wsirbot?ref_src=twsrc%5Etfw">Tweets by wsirbot</a> <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
-								 	</p>
-								 </span>
-							</div>
-						</div>
+			<div class="w-100"></div>
+			<div class="col-sm-12 col-md-12 col-lg-6 fb text-center">
+					<div class="ribbon">
+						 <div class="ribbon-content">
+							 <div class="seam">
+									<div class="fb-page" data-href="https://www.facebook.com/What-Should-I-Read-wsir-485117375193523/" data-tabs="timeline" data-width="270" data-height="300" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true"><blockquote cite="https://www.facebook.com/What-Should-I-Read-wsir-485117375193523/" class="fb-xfbml-parse-ignore"><a href="https://www.facebook.com/What-Should-I-Read-wsir-485117375193523/">What Should I Read? #wsir</a></blockquote></div>
+								</div>
+						 </div>
 					</div>
-					<div class="row">
-						<div class="col-sm-12 col-md-12 col-lg-6 fb text-center">
-							<div class="ribbon">
-								 <span class="ribbon-content">
-								 	<p>
-								 		<iframe src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2FWhat-Should-I-Read-wsir-485117375193523%2F&tabs=timeline&width=340&height=400&small_header=true&adapt_container_width=true&hide_cover=false&show_facepile=true&appId" width="100%" height="300" style="border:none;" scrolling="yes" frameborder="0" allowTransparency="true"></iframe>
-								 	</p>
-								 </span>
-							</div>
-						</div>
-				</div>
 			</div>
 			<footer class="col-12 align-self-bottom text-center">
 				<p>
@@ -67,6 +82,7 @@
 					<a href="https://github.com/vzapo"><i aria-hidden="true" class="fa fa-2x fa-github"></i></a> <a href="www.twitter.com/zapovic"><i aria-hidden="true" class="fa fa-2x fa-twitter"></i></a>
 				</p>
 			</footer>
+			</div>
 		</div>
 	</div>
 

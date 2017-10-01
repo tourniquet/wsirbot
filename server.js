@@ -30,11 +30,11 @@ app.get('/', function (req, res) {
         var title = text.split(',')[0];
         console.log(time+ ': Got tweet at '+ time + " with >>\n" + "ID: "+id + "\nText: "+text);
         goodreads.getCover(title,function(cover){
-            res.render('index',{cover}); 
+            res.render('index',{cover});
         });
     });
 })
 
-app.listen(port || 5000);
-
-console.log('Started web service at ' +date.getDate() +"/"+ date.getMonth() + "-"+ date.getHours() + ":" + date.getMinutes());
+app.listen(port || 5000,function(){
+  console.log(date.getDate() +"/"+ date.getMonth() + "-"+ date.getHours() + ":" + date.getMinutes() + ' Started web service on ' + this.address().port );
+});

@@ -1,8 +1,11 @@
-$bg:#1DDCED;
-$clr1:#f2f2f2;
-$clr2:#222;
-$clr3:#ee9e4f;
-$clr4:#d5700b;
+$blue-light:#1DDCED;
+$white:#f2f2f2;
+$dark:#222;
+$orange-light:#ee9e4f;
+$orange:#d5700b;
+$green:#356600;
+$green-light:#4C9F24;
+$grey:#999;
 
 *, ::after, ::before{
   box-sizing:inherit;
@@ -22,7 +25,7 @@ $clr4:#d5700b;
 
 html,body{
     overflow-x:hidden;
-    background-color: $bg;
+    background-color: $blue-light;
     width: 100%;
     height: 100%;
     background-image: url('../imgs/bg.svg');
@@ -31,8 +34,8 @@ html,body{
     background-size:100%;
     background-repeat: no-repeat;
     font-family: 'Crimson Text', serif;
-    color:$clr1;
-    text-shadow: 1px 1px 2px $clr2;
+    color:$white;
+    text-shadow: 1px 1px 2px $dark;
     font-size:15px;
 }
 
@@ -65,9 +68,9 @@ a{
   &:hover{
     text-decoration:none;
   }
-  color:$clr1;
+  color:$white;
   &:hover{
-    color:$clr3;
+    color:$dark;
   }
 }
 
@@ -87,7 +90,7 @@ footer{
   position:relative;
   width:200px;
   height:75px;
-  background:$clr1;
+  background:$white;
   border-radius:100px;
   &:after{
     content:"";
@@ -96,7 +99,7 @@ footer{
     height:75px;
     top:-25px;
     left:25px;
-    background:$clr1;
+    background:$white;
     border-top-left-radius:50%;
     border-top-right-radius:50%;
     border-bottom-left-radius:50%;
@@ -107,7 +110,7 @@ footer{
     width:100px;
     top:-40px;
     height:100px;
-    background:$clr1;
+    background:$white;
     right:15px;
     border-top-left-radius:50%;
     border-top-right-radius:50%;
@@ -136,7 +139,7 @@ footer{
   margin:2em;
   position: relative;
   width: 200px;
-  height: 300px;  
+  height: 300px;
   & > .book-cover{
       background-size:cover;
       background-repeat:no-repeat;
@@ -146,13 +149,13 @@ footer{
       width: 100%;
       height: 100%;
       text-align: center;
-      box-shadow: 0px 2px 4px #999;
+      box-shadow: 0px 2px 4px $dark;
       border-bottom-right-radius: 2px;
-      background-color:$clr1;
+      background-color:$white;
       font-family: Helvetica, Arial, sans-serif;
       z-index: 1;
       &:before{
-        border-left: 10px solid #000000;
+        border-left: 10px solid $dark;
         content: "";
         height: 300px;
         left: 0;
@@ -168,10 +171,10 @@ footer{
       }
   }
   &-top {
-    background-color: #EEEEEE;
+    background-color: $white;
     border-left: 5px solid #222;
     border-top: 2px solid #222;
-    box-shadow: 1px 0px 2px #999;
+    box-shadow: 1px 0px 2px $grey;
     height: 9px;
     left: 5px;
     position: absolute;
@@ -182,10 +185,10 @@ footer{
     -webkit-transform: skew(-45deg, 0deg);
   }
   &-right {
-    background-color: #EEEEEE;
-    border-bottom: 1px solid #DDDDDD;
-    border-right: 2px solid #222;
-    box-shadow: 1px 0px 1px #999;
+    background-color: $grey;
+    border-bottom: 1px solid $grey;
+    border-right: 2px solid $dark;
+    box-shadow: 1px 0px 1px $grey;
     height: 296px;
     position: absolute;
     right: -10px;
@@ -203,35 +206,36 @@ footer{
 
 .ribbon {
  position: relative;
- background: $clr4;
- color: #fff;
+ background: $green-light;
+ color: $white;
  text-align: center;
- padding: 5px; 
- margin: 2em;
-}
-
-.ribbon-content  > p {
-  font-size:1.5em;
-  padding:5px;
-  border:1px dashed $clr3;
-  margin:5px;
-}
-
-.ribbon .ribbon-content:before, .ribbon .ribbon-content:after {
- content: "";
- position: absolute;
- display: block;
- border-style: solid;
- border-color: $clr3 transparent transparent transparent;
- bottom: -1em;
-}
-.ribbon .ribbon-content:before {
- left: 0;
- border-width: 1em 0 0 1em;
-}
-.ribbon .ribbon-content:after {
- right: 0;
- border-width: 1em 1em 0 0;
+ padding: 5px;
+ margin-top:5px;
+ margin-bottom:5px;
+ & .ribbon-content{
+   & > .seam {
+     width:100%;
+     padding:5px;
+     border:1px dashed $white;
+     height:100%;
+   }
+   &:before, &:after{
+     content: "";
+     position: absolute;
+     display: block;
+     border-style: solid;
+     border-color: $green transparent transparent transparent;
+     bottom: -1em;
+   }
+   &:after{
+     right: 0;
+     border-width: 1em 1em 0 0;
+   }
+   &:before{
+     left: 0;
+     border-width: 1em 0 0 1em;
+   }
+ }
 }
 
 
