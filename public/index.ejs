@@ -2,18 +2,18 @@
 <html>
 <head>
 	<meta content="width=device-width, initial-scale=1, shrink-to-fit=no" name="viewport">
-	<meta content="A simple bot to help you read more and better books! #BOT #WSIR #WhatShouldIRead #twitter" name="description">
-	<meta content="bot,twitter,wsir,whatshouldiread,botwsir,book,books" name="keywords">
+	<meta content="A simple bot to help you read more and better books! #BOT #WhatShouldIRead #twitter #facebook" name="description">
+	<meta content="bot, twitter, wsir, whatshouldiread, botwsir, book, books, facebook" name="keywords">
 	<meta charset="utf-8">
 	<title>#WhatShouldIRead Today | A bot who will help you read better books</title>
 	<link href="https://fonts.googleapis.com/css?family=Crimson+Text" rel="stylesheet">
+	<link rel="icon" type="image/png" href="/assets/imgs/fav.png">
 	<link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" rel="stylesheet">
 	<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 	<link href="/assets/css/main.css" rel="stylesheet">
 </head>
 <body>
-
-	<script>
+<script>
   window.fbAsyncInit = function() {
     FB.init({
       appId            : '452089435187307',
@@ -33,6 +33,28 @@
   fjs.parentNode.insertBefore(js, fjs);
 }(document, 'script', 'facebook-jssdk'));</script>
 
+	<div class="menu-icon">
+       	<span></span>
+       	<span></span>
+       	<span></span>
+    </div>
+	<div class="menu">
+		<div class="row h-100">
+			<div class="col-12 align-self-center text-center">
+			 	<ul class="menu-items">
+			 		<li id="home"><p>Home<span></span></p></li>
+			 		<li id="contest"><p>Contest<span></span></p></li>
+			 	</ul>
+		 	</div>
+		 	<div class="footer col-12 align-self-end text-center">
+				<p>
+					copywrite <i aria-hidden="true" class="fa fa-copyright"></i> Victor Zaporojan<br>
+					<a href="https://github.com/vzapo"><i aria-hidden="true" class="fa fa-2x fa-github"></i></a> <a href="www.twitter.com/zapovic"><i aria-hidden="true" class="fa fa-2x fa-twitter"></i></a>
+				</p>
+			</div>
+	 	</div>
+	 </div>
+	 
 	<div class="container-fluid">
 		<div class="row">
 			<div class="col-12">
@@ -45,7 +67,8 @@
 				<div class="ribbon">
 				   <div class="ribbon-content">
 						<div class="seam">
-				   		<h1>Today's pick</h1>
+				   			<h1>The book of the day</h1>
+				   			<div class="ribbons"><span>Best Books</span></div>
 						</div>
 				   </div>
 				</div>
@@ -60,6 +83,10 @@
 				<div class="ribbon">
 					 <div class="ribbon-content">
 						 <div class="seam">
+						 	<div class="row">
+						 		<div class="col-10 text-left"><h2>Follow us on Twitter</h2></div>
+						 		<div class="col-2 text-center"><i aria-hidden="true" class="fa fa-2x fa-twitter"></i></div>
+						 	</div>
 					 		<a class="twitter-timeline" data-height="300" href="https://twitter.com/wsirbot?ref_src=twsrc%5Etfw">Tweets by wsirbot</a> <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
 					 	</div>
 					 </span>
@@ -70,18 +97,14 @@
 			<div class="col-sm-12 col-md-12 col-lg-6 fb text-center">
 					<div class="ribbon">
 						 <div class="ribbon-content">
-							 <div class="seam">
-									<div class="fb-page" data-href="https://www.facebook.com/What-Should-I-Read-wsir-485117375193523/" data-tabs="timeline" data-width="270" data-height="300" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true"><blockquote cite="https://www.facebook.com/What-Should-I-Read-wsir-485117375193523/" class="fb-xfbml-parse-ignore"><a href="https://www.facebook.com/What-Should-I-Read-wsir-485117375193523/">What Should I Read? #wsir</a></blockquote></div>
-								</div>
+							 <div class="seam text-left">
+							 	<div class="row">
+							 		<div class="col-10 text-left"><h2>Follow us on Facebook</h2></div>
+							 		<div class="col-2 text-center"><i aria-hidden="true" class="fa fa-2x fa-facebook"></i></div>
+							 	</div>
 						 </div>
 					</div>
-			</div>
-			<footer class="col-12 align-self-bottom text-center">
-				<p>
-					copywrite <i aria-hidden="true" class="fa fa-copyright"></i> Victor Zaporojan<br>
-					<a href="https://github.com/vzapo"><i aria-hidden="true" class="fa fa-2x fa-github"></i></a> <a href="www.twitter.com/zapovic"><i aria-hidden="true" class="fa fa-2x fa-twitter"></i></a>
-				</p>
-			</footer>
+				</div>
 			</div>
 		</div>
 	</div>
@@ -96,7 +119,32 @@
 	</script>
 
 	<script>
+	
+	$(document).ready(function(){
+		var width = 200;
+		if($(document).width()>998){
+			width = 400;	
+		}
+		var fb = `<div class="col-12 text-center">
+		<div class="fb-page text-center ml-auto mr-auto" data-href="https://www.facebook.com/What-Should-I-Read-wsir-485117375193523/" data-tabs="timeline" data-width="${width}" data-height="300" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true"><blockquote cite="https://www.facebook.com/What-Should-I-Read-wsir-485117375193523/" class="fb-xfbml-parse-ignore"><a href="https://www.facebook.com/What-Should-I-Read-wsir-485117375193523/">What Should I Read? #wsir</a></blockquote></div>
+		</div>`;
+		$('.fb > .ribbon > .ribbon-content > .seam').append(fb);
 		$('.book-cover').css("background-image","url('<%= cover %>')");
+		$('.menu-icon').on('click',function(){
+            $(this).toggleClass('active');
+            $('.menu').toggleClass('show-menu');
+        })
+		$('.menu-items').children().each(function(){
+			$(this).click(function(){
+				if($(this).attr('id') == 'home'){
+					window.location.href = '/';
+				}else{
+					window.location.href = '/'+$(this).attr('id');
+				}
+				
+			})
+		})
+	})
 	</script>
 </body>
 </html>

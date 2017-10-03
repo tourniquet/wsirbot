@@ -35,47 +35,118 @@ html,body{
     font-family: 'Crimson Text', serif;
     color:$white;
     text-shadow: 1px 1px 2px $dark;
-    font-size:15px;
+    font-size:14px;
+    transition:0.8s all linear;
+}
+.container-fluid{
+  padding-bottom:100px;
+}
+.menu{
+  z-index:9998;
+  right:0;
+  position:fixed;
+  width:0px;
+  background:rgba($dark,0.5);
+  visibility:invisible;
+  height:100%;
+  transition:0.8s all linear;
 }
 
-.text{
-  font-size:1.5rem;
-}
-
-.header{
-  font-size:2.5rem;
-}
-
-.title{
-  font-size:2rem;
-}
-
-.twitter,.fb{
-  padding:15px;
-}
-
-
-.social {
-  font-size:0.9em;
-  & > div > a > i {
-    margin-left:5px;
-    margin-right:5px;
+.menu-items{
+  margin:0;
+  padding:0;
+  width:100%;
+  display:inline-block;
+  list-style-type:none;
+  & > li {
+    width:100%;
+    color:$white;
+    &:hover{
+      transition:0.8s all linear;
+    }
+    &:hover > p > span {
+      transition:0.8s all linear;
+      width:100%;
+    }
+  & > p{
+    padding:15px;
+    display:inline-block;
+    font-weight:bold;
+    position:relative;
+    font-size:1.5rem;
+    text-transform:uppercase;
+    padding-right:15px;
+    text-shadow:1px 1px 2px $dark;
+      & > span {
+        transition:0.8s all linear;
+        left:0;
+        right:0;
+        margin:auto;
+        width:20px;
+        background:$white;
+        height:2px;
+        position:absolute;
+        bottom:0;
+      }
+    }
   }
 }
+.show-menu{
+  width:50%;
+  visibility:visible;
+  transition:0.8s all linear;
+}
+.menu-icon {
+    z-index:9999;
+    width:35px;
+    position:absolute;
+    height:50px;
+    right:25px;
+    & > span {
+      box-shadow: 0px 1px 1px $dark;
+      transition:0.8s all linear;
+      position:absolute;
+      width:100%;
+      height:4px;
+      background:$white;
+      border-radius:5px;
+      @for $i from 1 through 3 {
+        &:nth-child(#{$i}) {
+          margin-top: $i * 10px;
+          transform:rotate(0deg);
+          top:0px;
+      }
+    }
+  }
+  &.active span:nth-child(1){
+    top:10px;
+    transform:rotate(45deg);
+  }
+  &.active span:nth-child(2){
+    opacity:0;
+  }
+  &.active span:nth-child(3){
+    top:-10px;
+    transform:rotate(-45deg);
+  }
+}
+
 
 a{
-  &:hover{
-    text-decoration:none;
-  }
+  transition:0.8s all linear;
   color:$white;
   &:hover{
+    text-decoration:none;
+    transition:0.8s all linear;
     color:$dark;
+    text-shadow:1px 1px 2px $white;
   }
 }
 
-footer{
+.footer{
+  margin-top:15px;
+  font-size:0.9rem;
   bottom:0;
-  width:100%;
 }
 
 
@@ -84,6 +155,7 @@ footer{
    ============= */
 
 .cloud{
+  z-index:0;
   display:inline-block;
   padding:15px;
   position:relative;
@@ -131,14 +203,11 @@ footer{
   }
 }
 
-/*********************
-        BOOK
-**********************/
 .book {
   margin:2em;
   position: relative;
   width: 200px;
-  height: 300px;
+  height: 250px;
   & > .book-cover{
       background-size:cover;
       background-repeat:no-repeat;
@@ -156,7 +225,7 @@ footer{
       &:before{
         border-left: 10px solid $dark;
         content: "";
-        height: 300px;
+        height: 100%;
         left: 0;
         opacity: 0.2;
         position: absolute;
@@ -188,7 +257,7 @@ footer{
     border-bottom: 1px solid $grey;
     border-right: 2px solid $dark;
     box-shadow: 1px 0px 1px $grey;
-    height: 296px;
+    height: 100%;
     position: absolute;
     right: -10px;
     top: -4px;
@@ -198,10 +267,6 @@ footer{
     -webkit-transform: skew(0deg, -45deg);
   }
 }
-
-/*********************
-        /BOOK
-**********************/
 
 .ribbon {
  position: relative;
@@ -217,6 +282,12 @@ footer{
      padding:5px;
      border:1px dashed $brown-light;
      height:100%;
+     & > .row{
+        border-bottom:1px dashed $brown-light;
+        margin-left:0;
+        margin-right:0;
+        margin-bottom:5px;
+     }
    }
    &:before, &:after{
      content: "";
@@ -238,7 +309,75 @@ footer{
 }
 
 
+.ribbons {
+  position: absolute;
+  right: -5px; top: -5px;
+  z-index: 1;
+  overflow: hidden;
+  width: 75px; height: 75px;
+  text-align: right;
+  & span{
+      font-size: 10px;
+      font-weight: bold;
+      color: #FFF;
+      text-transform: uppercase;
+      text-align: center;
+      line-height: 20px;
+      transform: rotate(45deg);
+      -webkit-transform: rotate(45deg);
+      width: 100px;
+      display: block;
+      background: #79A70A;
+      background: linear-gradient(#9BC90D 0%, #79A70A 100%);
+      box-shadow: 0 3px 10px -5px rgba(0, 0, 0, 1);
+      position: absolute;
+      top: 19px; right: -21px;
+    &:before{
+      content: "";
+      position: absolute; left: 0px; top: 100%;
+      z-index: -1;
+      border-left: 3px solid #79A70A;
+      border-right: 3px solid transparent;
+      border-bottom: 3px solid transparent;
+      border-top: 3px solid #79A70A;
+    }
+    &:after{
+      content: "";
+      position: absolute; right: 0px; top: 100%;
+      z-index: -1;
+      border-left: 3px solid transparent;
+      border-right: 3px solid #79A70A;
+      border-bottom: 3px solid transparent;
+      border-top: 3px solid #79A70A;
+    }
+  }
+}
+
+
+.text{
+  font-size:1.5rem;
+}
+
+.header{
+  font-size:2.5rem;
+}
+
+.title{
+  font-size:2rem;
+}
+
+.twitter,.fb{
+  padding:15px;
+}
+
+.post{
+  border-bottom:1px dashed $brown-light;
+} 
+
 @media all and (max-width:736px){
+  body, html{
+    font-size:11px;
+  }
     .two{
       display:none;
     }

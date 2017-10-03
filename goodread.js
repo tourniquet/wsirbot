@@ -10,8 +10,9 @@ var book = {
 
 var searchBook = {
     getBook: function(list,callback){
-        var alphabet = list.split('');
         var date = new Date();
+        console.log(date.getHours() + ":" + date.getMinutes() + 'Getting a book');
+        var alphabet = list.split('');
         var nr = Math.floor(Math.random() * alphabet.length);
         var letter = alphabet[nr];
 
@@ -48,7 +49,8 @@ var searchBook = {
         });
     },
     getCover:function(book,callback){
-         var date = new Date();
+        var date = new Date();
+        console.log(date.getHours() + ":" + date.getMinutes() + ' Getting the cover for the book');
 
         // Query for GoodRead search
         const query_book = {
@@ -64,7 +66,7 @@ var searchBook = {
               bookCover =  response.search.results.work[0].best_book.image_url;
             }
 
-    	      console.log(date.getHours() + ":" + date.getMinutes() + ' Book cover: '+bookCover);
+    	    console.log(date.getHours() + ":" + date.getMinutes() + ' Book cover: '+bookCover);
             callback(bookCover);
 
         }).catch((err) => {

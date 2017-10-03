@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta content="width=device-width, initial-scale=1, shrink-to-fit=no" name="viewport">
+	<meta content="A simple bot to help you read more and better books! #BOT #WhatShouldIRead #twitter #facebook" name="description">
+	<meta content="bot, twitter, wsir, whatshouldiread, botwsir, book, books, facebook" name="keywords">
+	<meta charset="utf-8">
+	<title>#WhatShouldIRead Today | A bot who will help you read better books</title>
+	<link href="https://fonts.googleapis.com/css?family=Crimson+Text" rel="stylesheet">
+	<link rel="icon" type="image/png" href="/assets/imgs/fav.png">
+	<link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" rel="stylesheet">
+	<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+	<link href="/assets/css/main.css" rel="stylesheet">
+</head>
+<body>
+	
+	<div class="menu-icon">
+       	<span></span>
+       	<span></span>
+       	<span></span>
+    </div>
+	<div class="menu">
+		<div class="row h-100">
+			<div class="col-12 align-self-center text-center">
+			 	<ul class="menu-items">
+			 		<li id="home"><p>Home<span></span></p></li>
+			 		<li id="contest"><p>Contest<span></span></p></li>
+			 	</ul>
+		 	</div>
+		 	<div class="footer col-12 align-self-end text-center">
+				<p>
+					copywrite <i aria-hidden="true" class="fa fa-copyright"></i> Victor Zaporojan<br>
+					<a href="https://github.com/vzapo"><i aria-hidden="true" class="fa fa-2x fa-github"></i></a> <a href="www.twitter.com/zapovic"><i aria-hidden="true" class="fa fa-2x fa-twitter"></i></a>
+				</p>
+			</div>
+	 	</div>
+	 </div>
+	 
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-12">
+				<div class="cloud one"></div>
+				<div class="cloud two"></div>
+				<div class="cloud three"></div>
+			</div>
+			<div class="w-100"></div>
+			<div class="col-sm-12 col-md-12 col-lg-6">
+				<div class="ribbon">
+				   <div class="ribbon-content">
+						<div class="seam">
+				   			<div class="row text-center">
+				   				<div class="col-12 text-center">
+				   					<h1>CONTEST</h1>
+				   				</div>
+				   			</div>
+				   			<div class="ribbons"><span> INFO </span></div>
+			   			    <div class="col-12">
+			   			    		<% if(data.contest.length == 0) {%>
+				   			    		<div class="post">
+						   			        <h2>
+						   			            No contest available!
+						   			        </h2>
+						   			    </div>
+			   			    		<% }else{ %>
+			   			    		<% for(var i=0; i<data.contest.length; i++) {%>
+					   			    	<div class="post">
+						   			        <h2>
+						   			            <%= data.contest[i].title %>
+						   			        </h2>
+						   			        <img src=<%= data.contest[i].img %> class="img-fluid img-thumbnail">
+						   			        <p>
+						   			        	Date: <%= data.contest[i].dateStart %> -  <%= data.contest[i].dateEnd %>
+						   			        </p>
+						   			        <p>
+						   			        	<%= data.contest[i].text %>
+						   			        </p>
+						   			        <p>Winner: <b><%= data.contest[i].winner %></b></p>
+						   			    </div>
+				   			        <% } %>
+			   			        <% } %>
+
+			   			        <h5>
+			   			        	For contact please email <a href="mailto:botwsir@gmail.com"> the BOT </a> or leave a message on <a href="twitter.com/wsirbot">Twitter</a> or <a href="https://www.facebook.com/What-Should-I-Read-wsir-485117375193523/">Fb page</a>
+			   			        </h5>
+				   			</div>
+						</div>
+				   </div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<script async charset="utf-8" src="//platform.twitter.com/widgets.js">
+	</script>
+	<script src="https://code.jquery.com/jquery-3.1.1.slim.min.js">
+	</script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js">
+	</script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js">
+	</script>
+
+	<script>
+	console.log(<%= data.contest.length %>)
+        $('.menu-icon').on('click',function(){
+            $(this).toggleClass('active');
+            $('.menu').toggleClass('show-menu');
+        })
+        $('.menu-items').children().each(function(){
+			$(this).click(function(){
+				if($(this).attr('id') == 'home'){
+					window.location.href = '/';
+				}else{
+					window.location.href = '/'+$(this).attr('id');
+				}
+			})
+		})
+	</script>
+</body>
+</html>
