@@ -21,7 +21,7 @@ var wsirBot = function(alphabet) {
         if (err) {
             console.log(err)
         }
-        
+
         // Check for tweet in case of a restart of server / malfunction
         console.log(date.getHours() + ":" + date.getMinutes() + ' Checking for tweet in the last 24h...');
         var last_tweet_date = data[0].created_at.substring(8, 11);
@@ -74,16 +74,16 @@ var wsirBot = function(alphabet) {
                 }
 
                 // // Post the tweet
-                // Twitter.post('statuses/update', params, function(err, data) {
-                //     var date = new Date();
-                //     // Check if error is present, if not continue
-                //     if (!err) {
-                //         console.log(date.getHours() + ":" + date.getMinutes() + ' Twitter INFO ' + 'Incoming data: ' + data.id + ' ' + data);
-                //     } else {
-                //         console.log(date.getHours() + ":" + date.getMinutes() + ' Ended...');
-                //         throw err;
-                //     }
-                // });
+                Twitter.post('statuses/update', params, function(err, data) {
+                    var date = new Date();
+                    // Check if error is present, if not continue
+                    if (!err) {
+                        console.log(date.getHours() + ":" + date.getMinutes() + ' Twitter INFO ' + 'Incoming data: ' + data.id + ' ' + data);
+                    } else {
+                        console.log(date.getHours() + ":" + date.getMinutes() + ' Ended...');
+                        throw err;
+                    }
+                });
 
             });
 
