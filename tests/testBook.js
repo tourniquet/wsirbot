@@ -1,5 +1,5 @@
-var assert = require("assert");
-var book = require('../goodread.js');
+let assert = require("assert");
+let book = require('../goodread.js');
 const alphabet = 'abcdefghijklmnopqrstuvwxyz';
 
 describe('Get Books', function(){

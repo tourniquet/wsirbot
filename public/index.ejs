@@ -16,10 +16,10 @@
 <script>
   window.fbAsyncInit = function() {
     FB.init({
-      appId            : '452089435187307',
+      appId            : "452089435187307",
       autoLogAppEvents : true,
       xfbml            : true,
-      version          : 'v2.10'
+      version          : "v2.10"
     });
     FB.AppEvents.logPageView();
   };
@@ -31,7 +31,7 @@
   js = d.createElement(s); js.id = id;
   js.src = "//connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v2.10&appId=452089435187307";
   fjs.parentNode.insertBefore(js, fjs);
-}(document, 'script', 'facebook-jssdk'));</script>
+}(document, "script", "facebook-jssdk"));</script>
 
 	<div class="menu-icon">
        	<span></span>
@@ -128,18 +128,18 @@
 		var fb = `<div class="col-12 text-center">
 		<div class="fb-page text-center ml-auto mr-auto" data-href="https://www.facebook.com/What-Should-I-Read-wsir-485117375193523/" data-tabs="timeline" data-width="${width}" data-height="300" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true"><blockquote cite="https://www.facebook.com/What-Should-I-Read-wsir-485117375193523/" class="fb-xfbml-parse-ignore"><a href="https://www.facebook.com/What-Should-I-Read-wsir-485117375193523/">What Should I Read? #wsir</a></blockquote></div>
 		</div>`;
-		$('.fb > .ribbon > .ribbon-content > .seam').append(fb);
-		$('.book-cover').css("background-image","url('<%= cover %>')");
-		$('.menu-icon').on('click',function(){
-            $(this).toggleClass('active');
-            $('.menu').toggleClass('show-menu');
+		$(".fb > .ribbon > .ribbon-content > .seam").append(fb);
+		$(".book-cover").css("background-image","url(<%= cover %>)");
+		$(".menu-icon").on("click",function(){
+            $(this).toggleClass("active");
+            $(".menu").toggleClass("show-menu");
         })
-		$('.menu-items').children().each(function(){
+		$(".menu-items").children().each(function(){
 			$(this).click(function(){
-				if($(this).attr('id') == 'home'){
-					window.location.href = '/';
+				if($(this).attr("id") == "home"){
+					window.location.href = "/";
 				}else{
-					window.location.href = '/'+$(this).attr('id');
+					window.location.href = "/"+$(this).attr("id");
 				}
 				
 			})

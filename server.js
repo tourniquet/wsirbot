@@ -26,7 +26,7 @@ app.get('/', function (req, res) {
         let id = data[0].id;
         let text = data[0].text.substring(13,data[0].text.indexOf('@'));
         let title = text.split(',')[0];
-        console.log(time+ ': Got tweet at '+ time + " with >>\n" + "ID: "+id + "\nText: "+text);
+        console.log(time+ ': Got tweet at '+ time + " with >>\n" + " ID: "+id + "\n Text: "+text);
         goodreads.getCover(title,function(cover){
             res.render('index',{cover});
         });
