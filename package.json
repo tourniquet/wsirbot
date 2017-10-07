@@ -7,9 +7,9 @@
     "start": "node server.js",
     "test": "mocha ./tests"
   },
-  "repository" : {
-    "type" : "git",
-    "url" : "https://github.com/vzapo/wsirbot.git"
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/vzapo/wsirbot.git"
   },
   "author": "Victor Zaporojan",
   "license": "ISC",
@@ -19,6 +19,7 @@
     "goodreads": "^0.1.0",
     "goodreads-api-node": "0.0.4",
     "handlebars": "^4.0.10",
+    "mocha": "^4.0.1",
     "node-sass": "^4.5.3",
     "path": "^0.12.7",
     "simple-node-logger": "^0.93.28",

@@ -19,24 +19,25 @@ let wsirBot = {
             }, function(err, data, response) {
             if (err) {
                 console.log(err)
-                throw err;
             }
-            
+
             // Check for tweet in case of a restart of server / malfunction
             console.log(date.getHours() + ":" + date.getMinutes() + " Checking for tweet in the last 24h...");
             let last_tweet_date = data[0].created_at.substring(8, 11);
             if (last_tweet_date == date.getDate()) {
-                answer = true;    
+                answer = true;
+                console.log(date.getHours() + ":" + date.getMinutes() + " Post grabed:\n Post ID - " + data[0].id + "\n Post text - " + data[0].text);
             }
             return callback(answer);
         });
     },
     postTweet : function(letters,callback) {
     let date = new Date();
-
+    let self = this;
     console.log(date.getHours() + ":" + date.getMinutes() + " Tweeting process START!");
         // Get book
         goodreads.getBook(letters, function(data) {
+            let done = false;
             console.log(date.getHours() + ":" + date.getMinutes() + " Got the book! Continue with tweeting process");
             let year = date.getFullYear();
             let month;
@@ -74,50 +75,64 @@ let wsirBot = {
                 console.log(date.getHours() + ":" + date.getMinutes() +" Got new status:" + params.status);
                 if (params.status.length >= 140) {
                     console.log(date.getHours() + ":" + date.getMinutes() +" New status still to long, getting a new one.");
-                    wsirBot.postTweet(wsirBot.letters);
+                    self.postTweet(self.letters,function(answer){
+                      console.log('Post finished: ' + answer)
+                    });
                 }
             }
 
-            // // Post the tweet
+            // Post the tweet
             Twitter.post("statuses/update", params, function(err, data) {
-                var date = new Date();
+                let date = new Date();
                 // Check if error is present, if not continue
-                if (!err) {
-                    console.log(date.getHours() + ":" + date.getMinutes() + " Twitter INFO " + "Incoming data: " + data.id + " " + data);
-                } else {
-                    console.log(date.getHours() + ":" + date.getMinutes() + " Ended...");
-                    throw err;
-                }
+                 if (!err) {
+                     console.log(date.getHours() + ":" + date.getMinutes() + " Twitter INFO " + "Incoming data: " + data.id + " " + data);
+                     done = true;
+                 } else {
+                     console.log(date.getHours() + ":" + date.getMinutes() + " Ended...");
+                 }
+                 return callback(done);
             });
-            callback(true);
         });
     }
 }
 
 // Launch the application
 wsirBot.checkPost(function(answer){
+    let self = this;
     let date = new Date();
     console.log(date.getHours() + ":" + date.getMinutes() + " Application START!");
+    // One more check as Heroku does random restarts.
     if(answer){
         console.log(date.getHours() + ":" + date.getMinutes() + " Skiped posting. Found tweet.");
     }else{
-        wsirBot.postTweet(wsirBot.letters);
+        if(date.getHours() == 9){
+          console.log(date.getHours() + ":" + date.getMinutes() + " Time to post, no tweet found and time is 9am");
+          self.postTweet(self.letters,function(answer){
+            console.log('Post finished: ' + answer)
+          });
+        }else{
+          console.log(date.getHours() + ":" + date.getMinutes() + " Not posting now. Time is: "+ date.getHours() + ":" + date.getMinutes() + ". Will post at 9am in the morning!");
+        }
     }
 })
 
 // Hack for heroku to keep app alive and log any errors
 const min_log = 1000 * 60 * 15;
 let logging = setInterval(function(){
+    let self = this;
     let date = new Date();
     console.log(date.getHours() + ":" + date.getMinutes() + " BOT active!...");
     console.log(date.getHours() + ":" + date.getMinutes() + " Checking if it's time to post")
     if(date.getHours() == 9){
-        wsirBot.checkPost(function(answer){
+        self.checkPost(function(answer){
             if(answer){
                 console.log(date.getHours() + ":" + date.getMinutes() + " Tweet found! Skip posting until tomorrow.");
             }else{
                 console.log(date.getHours() + ":" + date.getMinutes() + " Time to post, no tweet found");
-                wsirBot.postTweet(wsirBot.letters);
+                self.postTweet(self.letters,function(answer){
+                  console.log('Post finished: ' + answer)
+                });
             }
         })
     }else{

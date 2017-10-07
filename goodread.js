@@ -66,7 +66,7 @@ let searchBook = {
               bookCover =  response.search.results.work[0].best_book.image_url;
             }
 
-    	    console.log(date.getHours() + ":" + date.getMinutes() + ' Book cover: '+bookCover);
+    	      console.log(date.getHours() + ":" + date.getMinutes() + ' Book cover: '+bookCover);
             callback(bookCover);
 
         }).catch((err) => {
