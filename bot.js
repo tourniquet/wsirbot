@@ -99,7 +99,6 @@ let wsirBot = {
 
 // Launch the application
 wsirBot.checkPost(function(answer){
-    let self = this;
     let date = new Date();
     console.log(date.getHours() + ":" + date.getMinutes() + " Application START!");
     // One more check as Heroku does random restarts.
@@ -107,7 +106,7 @@ wsirBot.checkPost(function(answer){
         console.log(date.getHours() + ":" + date.getMinutes() + " Skiped posting. Found tweet.");
     }else{
         console.log(date.getHours() + ":" + date.getMinutes() + " No tweet found after restart app.");
-        self.postTweet(self.letters,function(answer){
+        wsirBot.postTweet(wsirBot.letters,function(answer){
           console.log('Post finished: ' + answer)
         });
     }
@@ -121,12 +120,11 @@ let logging = setInterval(function(){
     console.log(date.getHours() + ":" + date.getMinutes() + " Checking if it's time to post")
     if(date.getHours() == 9){
         wsirBot.checkPost(function(answer){
-            let self = this;
             if(answer){
                 console.log(date.getHours() + ":" + date.getMinutes() + " Tweet found! Skip posting until tomorrow.");
             }else{
                 console.log(date.getHours() + ":" + date.getMinutes() + " Time to post, no tweet found");
-                self.postTweet(self.letters,function(answer){
+                wsirBot.postTweet(wsirBot.letters,function(answer){
                   console.log('Post finished: ' + answer)
                 });
             }
