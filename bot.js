@@ -106,26 +106,22 @@ wsirBot.checkPost(function(answer){
     if(answer){
         console.log(date.getHours() + ":" + date.getMinutes() + " Skiped posting. Found tweet.");
     }else{
-        if(date.getHours() == 9){
-          console.log(date.getHours() + ":" + date.getMinutes() + " Time to post, no tweet found and time is 9am");
-          self.postTweet(self.letters,function(answer){
-            console.log('Post finished: ' + answer)
-          });
-        }else{
-          console.log(date.getHours() + ":" + date.getMinutes() + " Not posting now. Time is: "+ date.getHours() + ":" + date.getMinutes() + ". Will post at 9am in the morning!");
-        }
+        console.log(date.getHours() + ":" + date.getMinutes() + " No tweet found after restart app.");
+        self.postTweet(self.letters,function(answer){
+          console.log('Post finished: ' + answer)
+        });
     }
 })
 
 // Hack for heroku to keep app alive and log any errors
 const min_log = 1000 * 60 * 15;
 let logging = setInterval(function(){
-    let self = this;
     let date = new Date();
     console.log(date.getHours() + ":" + date.getMinutes() + " BOT active!...");
     console.log(date.getHours() + ":" + date.getMinutes() + " Checking if it's time to post")
     if(date.getHours() == 9){
-        self.checkPost(function(answer){
+        wsirBot.checkPost(function(answer){
+            ~let self = this;
             if(answer){
                 console.log(date.getHours() + ":" + date.getMinutes() + " Tweet found! Skip posting until tomorrow.");
             }else{
