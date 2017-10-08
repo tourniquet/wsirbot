@@ -121,7 +121,7 @@ let logging = setInterval(function(){
     console.log(date.getHours() + ":" + date.getMinutes() + " Checking if it's time to post")
     if(date.getHours() == 9){
         wsirBot.checkPost(function(answer){
-            ~let self = this;
+            let self = this;
             if(answer){
                 console.log(date.getHours() + ":" + date.getMinutes() + " Tweet found! Skip posting until tomorrow.");
             }else{
