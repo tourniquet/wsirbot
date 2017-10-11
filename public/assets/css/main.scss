@@ -1,11 +1,11 @@
 $blue-light:#1DDCED;
 $white:#f2f2f2;
+$whiteish:#f9f9f9;
 $dark:#222;
 $brown:#77460C;
 $brown-light:#CB7C22;
 $brown-dark:#5d3709;
-$grey:#999;
-
+$grey:#ddd;
 @mixin border-radius($radius,$pos){
     border-top-left-radius:$radius;
     border-top-right-radius:$radius;
@@ -32,33 +32,52 @@ $grey:#999;
   }
 }
 
-html,body{
+@font-face {
+  font-family: 'rwr';
+  src: url('../fonts/rwr.ttf');
+}
+
+@font-face {
+  font-family: 'rwt';
+  src: url('../fonts/rwt.ttf');
+}
+
+html, body{
+    height:100%;
+    width:100%;
     overflow-x:hidden;
     background-color: $blue-light;
-    width: 100%;
-    height: 100%;
     background-image: url('../imgs/bg.svg');
     background-position: bottom;
-    background-attachment: 0.5;
     background-size:100%;
     background-repeat: no-repeat;
-    font-family: 'Crimson Text', serif;
-    color:$white;
-    text-shadow: 1px 1px 2px $dark;
-    font-size:14px;
-    transition:0.5 all linear;
+    font-family: 'rwt';
+    color:$whiteish;
+    text-shadow: 1px 2px 1px $dark;
+    font-size:20px;
 }
+
+h1 {
+  font-size:300%;
+}
+h2{
+  font-size:200%;
+}
+
 .container-fluid{
-  position:relative;
   padding-bottom:100px;
+}
+
+.underline{
+  border-bottom:1px solid $white;
 }
 .menu{
   z-index:9998;
   right:0;
-  position:absolute;
+  position:fixed;
   width:0px;
-  background:rgba($dark,0.5);
-  visibility:invisible;
+  background:rgba($dark,0.9);
+  visibility:hidden;
   height:100%;
   transition:0.5s all linear;
 }
@@ -108,9 +127,10 @@ html,body{
   visibility:visible;
   transition:0.5s all linear;
 }
+
 .menu-icon {
     z-index:9999;
-    width:35px;
+    width:36px;
     position:absolute;
     height:50px;
     right:25px;
@@ -237,12 +257,6 @@ a{
         position: absolute;
         top: 0;
       }
-      & > h1, > h2{
-          margin: 0;
-          padding: 0;
-          font-weight: 300;
-          line-height: 30px;
-      }
   }
   &-top {
     background-color: $white;
@@ -274,120 +288,28 @@ a{
   }
 }
 
-.ribbon {
- position: relative;
- background: $brown;
- color: $white;
- text-align: center;
- padding: 5px;
- margin-top:5px;
- margin-bottom:5px;
- & .ribbon-content{
-   & > .seam {
-     width:100%;
-     padding:5px;
-     border:1px dashed $brown-light;
-     height:100%;
-     & > .row{
-        border-bottom:1px dashed $brown-light;
-        margin-left:0;
-        margin-right:0;
-        margin-bottom:5px;
-     }
-   }
-   &:before, &:after{
-     content: "";
-     position: absolute;
-     display: block;
-     border-style: solid;
-     border-color: $brown-dark transparent transparent transparent;
-     bottom: -1em;
-   }
-   &:after{
-     right: 0;
-     border-width: 1em 1em 0 0;
-   }
-   &:before{
-     left: 0;
-     border-width: 1em 0 0 1em;
-   }
- }
+.seam{
+  border-bottom:1px dashed $white;
+  margin-top:5px;
+  margin-bottom:5px;
 }
-
-
-.ribbons {
-  position: absolute;
-  right: -5px; top: -5px;
-  z-index: 1;
-  overflow: hidden;
-  width: 75px; height: 75px;
-  text-align: right;
-  & span{
-      font-size: 10px;
-      font-weight: bold;
-      color: #FFF;
-      text-transform: uppercase;
-      text-align: center;
-      line-height: 20px;
-      transform: rotate(45deg);
-      -webkit-transform: rotate(45deg);
-      width: 100px;
-      display: block;
-      background: #79A70A;
-      background: linear-gradient(#9BC90D 0%, #79A70A 100%);
-      box-shadow: 0 3px 10px -5px rgba(0, 0, 0, 1);
-      position: absolute;
-      top: 19px; right: -21px;
-    &:before{
-      content: "";
-      position: absolute; left: 0px; top: 100%;
-      z-index: -1;
-      border-left: 3px solid #79A70A;
-      border-right: 3px solid transparent;
-      border-bottom: 3px solid transparent;
-      border-top: 3px solid #79A70A;
-    }
-    &:after{
-      content: "";
-      position: absolute; right: 0px; top: 100%;
-      z-index: -1;
-      border-left: 3px solid transparent;
-      border-right: 3px solid #79A70A;
-      border-bottom: 3px solid transparent;
-      border-top: 3px solid #79A70A;
-    }
-  }
+.text, .date{
+  font-size:22px;
 }
-
-
-.text{
-  font-size:1.5rem;
-}
-
-.header{
-  font-size:2.5rem;
-}
-
-.title{
-  font-size:2rem;
-}
-
-.twitter,.fb{
-  padding:15px;
-}
-
-.post{
-  border-bottom:1px dashed $brown-light;
-} 
-
 @media all and (max-width:736px){
   body, html{
-    font-size:11px;
+    font-size:16px;
   }
-    .two{
+
+  .two{
       display:none;
-    }
-    .three{
+  }
+  .three{
     display:none;
+  }
+}
+@media all and (min-width:998px){
+  .row{
+    padding-left:15px;
   }
 }

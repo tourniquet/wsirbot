@@ -54,7 +54,7 @@
 			</div>
 	 	</div>
 	 </div>
-	 
+
 	<div class="container-fluid">
 		<div class="row">
 			<div class="col-12">
@@ -62,52 +62,59 @@
 				<div class="cloud two"></div>
 				<div class="cloud three"></div>
 			</div>
-			<div class="w-100"></div>
-			<div class="col-sm-12 col-md-12 col-lg-6">
-				<div class="ribbon">
-				   <div class="ribbon-content">
-						<div class="seam">
-				   			<h1>The book of the day</h1>
-				   			<div class="ribbons"><span>Best Books</span></div>
-						</div>
-				   </div>
+		</div>
+		<div class="row">
+			<div class="col-sm-12 col-md-12 col-lg-6 text-center">
+				<div class="seam">
+				   	<h1>The book of the day</h1>
+					</div>
 				</div>
+			</div>
+		<div class="row">
+			<div class="col-sm-12 col-md-12 col-lg-6">
 				<div class="book mr-auto ml-auto">
 					<div class="book-cover"></div>
 					<div class="book-top"></div>
 					<div class="book-right"></div>
 				</div>
 			</div>
-			<div class="w-100"></div>
-			<div class="col-sm-12 col-md-12 col-lg-6 text-center">
-				<div class="ribbon">
-					 <div class="ribbon-content">
-						 <div class="seam">
-						 	<div class="row">
-						 		<div class="col-10 text-left"><h2>Follow us on Twitter</h2></div>
-						 		<div class="col-2 text-center"><i aria-hidden="true" class="fa fa-2x fa-twitter"></i></div>
-						 	</div>
-					 		<a class="twitter-timeline" data-height="300" href="https://twitter.com/wsirbot?ref_src=twsrc%5Etfw">Tweets by wsirbot</a> <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
-					 	</div>
-					 </span>
+		</div>
+			<div class="row">
+				<div class="col-sm-12 col-md-12 col-lg-6">
+					<div class="seam">
+						<div class="row">
+							<div class="col-10 text-left">
+								<h2>Follow us on Twitter</h2>
+							</div>
+							<div class="col-2 text-center">
+								<i aria-hidden="true" class="fa fa-2x fa-twitter"></i>
+							</div>
+						</div>
 					</div>
 				</div>
 			</div>
-			<div class="w-100"></div>
-			<div class="col-sm-12 col-md-12 col-lg-6 fb text-center">
-					<div class="ribbon">
-						 <div class="ribbon-content">
-							 <div class="seam text-left">
-							 	<div class="row">
-							 		<div class="col-10 text-left"><h2>Follow us on Facebook</h2></div>
-							 		<div class="col-2 text-center"><i aria-hidden="true" class="fa fa-2x fa-facebook"></i></div>
-							 	</div>
-						 </div>
+			<div class="row">
+				<div class="col-sm-12 col-md-12 col-lg-6">
+					<a class="twitter-timeline" data-height="300" href="https://twitter.com/wsirbot?ref_src=twsrc%5Etfw">Tweets by wsirbot</a> <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-sm-12 col-md-12 col-lg-6">
+					<div class="seam text-left">
+							 <div class="row">
+								 <div class="col-10 text-left"><h2>Follow us on Facebook</h2></div>
+								 <div class="col-2 text-center"><i aria-hidden="true" class="fa fa-2x fa-facebook"></i></div>
+						</div>
 					</div>
+
+						<div class="row">
+							<div class="col-12 fb text-center">
+
+						 </div>
+						</div>
 				</div>
 			</div>
 		</div>
-	</div>
 
 	<script async charset="utf-8" src="//platform.twitter.com/widgets.js">
 	</script>
@@ -119,11 +126,11 @@
 	</script>
 
 	<script>
-	
+
 	$(document).ready(function(){
 		var width = 200;
 		if($(document).width()>998){
-			width = 400;	
+			width = 400;
 		}
 		var fb = `<div class="col-12 text-center">
 		<div class="fb-page text-center ml-auto mr-auto" data-href="https://www.facebook.com/What-Should-I-Read-wsir-485117375193523/" data-tabs="timeline" data-width="${width}" data-height="300" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true"><blockquote cite="https://www.facebook.com/What-Should-I-Read-wsir-485117375193523/" class="fb-xfbml-parse-ignore"><a href="https://www.facebook.com/What-Should-I-Read-wsir-485117375193523/">What Should I Read? #wsir</a></blockquote></div>
@@ -141,10 +148,16 @@
 				}else{
 					window.location.href = "/"+$(this).attr("id");
 				}
-				
+
 			})
 		})
 	})
+
+	if($(document).width()>560){
+		$('.fb').append('<div class="fb-page" data-href="https://www.facebook.com/What-Should-I-Read-wsir-485117375193523/" data-tabs="timeline" data-width="500" data-height="300" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true"><blockquote cite="https://www.facebook.com/What-Should-I-Read-wsir-485117375193523/" class="fb-xfbml-parse-ignore"><a href="https://www.facebook.com/What-Should-I-Read-wsir-485117375193523/">What Should I Read? #wsir</a></blockquote></div>');
+	}else{
+		$('.fb').append('<div class="fb-page" data-href="https://www.facebook.com/What-Should-I-Read-wsir-485117375193523/" data-tabs="timeline" data-width="270" data-height="300" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true"><blockquote cite="https://www.facebook.com/What-Should-I-Read-wsir-485117375193523/" class="fb-xfbml-parse-ignore"><a href="https://www.facebook.com/What-Should-I-Read-wsir-485117375193523/">What Should I Read? #wsir</a></blockquote></div>');
+	}
 	</script>
 </body>
 </html>

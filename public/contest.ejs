@@ -13,7 +13,7 @@
 	<link href="/assets/css/main.css" rel="stylesheet">
 </head>
 <body>
-	
+
 	<div class="menu-icon">
        	<span></span>
        	<span></span>
@@ -35,7 +35,7 @@
 			</div>
 	 	</div>
 	 </div>
-	 
+
 	<div class="container-fluid">
 		<div class="row">
 			<div class="col-12">
@@ -45,15 +45,19 @@
 			</div>
 			<div class="w-100"></div>
 			<div class="col-sm-12 col-md-12 col-lg-6">
-				<div class="ribbon">
-				   <div class="ribbon-content">
 						<div class="seam">
 				   			<div class="row text-center">
 				   				<div class="col-12 text-center">
-				   					<h1>CONTEST</h1>
+				   					<h1>
+											<i class="fa fa-star" aria-hidden="true"></i>
+										CONTEST
+										<i class="fa fa-star" aria-hidden="true"></i>
+
+										</h1>
 				   				</div>
 				   			</div>
-				   			<div class="ribbons"><span> INFO </span></div>
+							</div>
+							<div class="row">
 			   			    <div class="col-12">
 			   			    		<% if(data.contest.length == 0) {%>
 				   			    		<div class="post">
@@ -64,26 +68,28 @@
 			   			    		<% }else{ %>
 			   			    		<% for(var i=0; i<data.contest.length; i++) {%>
 					   			    	<div class="post">
-						   			        <h2>
+						   			        <h2 class="title text-center underline">
+
 						   			            <%= data.contest[i].title %>
+
 						   			        </h2>
-						   			        <img src=<%= data.contest[i].img %> class="img-fluid img-thumbnail">
-						   			        <p>
-						   			        	Date: <%= data.contest[i].dateStart %> -  <%= data.contest[i].dateEnd %>
-						   			        </p>
-						   			        <p>
-						   			        	<%= data.contest[i].text %>
-						   			        </p>
-						   			        <p>Winner: <b><%= data.contest[i].winner %></b></p>
+						   			        <img src="<%= data.contest[i].img %>" class="img-fluid img-thumbnail">
+						   			        <div class="date">
+						   			        	<span class="underline">															<i class="fa fa-calendar" aria-hidden="true"></i>
+ Date</span>: <%= data.contest[i].date %>
+						   			        </div>
+						   			        <div class="text">
+ 														<%- data.contest[0].text %>
+						   			        </div>
+						   			        <p>To see the winner go on Twitter of Facebook page.</p>
 						   			    </div>
 				   			        <% } %>
 			   			        <% } %>
 
 			   			        <h5>
-			   			        	For contact please email <a href="mailto:botwsir@gmail.com"> the BOT </a> or leave a message on <a href="twitter.com/wsirbot">Twitter</a> or <a href="https://www.facebook.com/What-Should-I-Read-wsir-485117375193523/">Fb page</a>
+			   			        	For contact please email <b><a href="mailto:botwsir@gmail.com"> here </a></b> or leave a message on <b><a href="twitter.com/wsirbot">Twitter</a></b> or <b><a href="https://www.facebook.com/What-Should-I-Read-wsir-485117375193523/">Fb page</a></b>
 			   			        </h5>
 				   			</div>
-						</div>
 				   </div>
 				</div>
 			</div>
@@ -100,7 +106,7 @@
 	</script>
 
 	<script>
-	console.log(<%= data.contest.length %>)
+	console.log('<%= data.contest[0].text %>')
         $('.menu-icon').on('click',function(){
             $(this).toggleClass('active');
             $('.menu').toggleClass('show-menu');
@@ -114,6 +120,7 @@
 				}
 			})
 		})
+
 	</script>
 </body>
 </html>

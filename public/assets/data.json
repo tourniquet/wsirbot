@@ -1,3 +1,9 @@
 {
-    "contest":[]
+    "contest":[{
+      "title":"Autmun free book giveaway",
+      "img":"http://localhost:5000/assets/imgs/bg.svg",
+      "date":"16 Oct - 16 Nov",
+      "text":"<p>Autumn has came, weather gets chilly and the indoors are more welcoming every day and with each day passing by winter is also closing in. But with it a great opportunity has also come upon you. <span class='underline'>The AUTUMN FREE BOOK GIEVAWAY</span class='underline'>.</p><p> <span class='underline'>What is this?</span class='underline'></p> <p> Simple, it's a where in which you can be the lucky winner of a book of your choice</p> <p> <span class='underline'>How?</span class='underline'></p> <p> All you have to do is share and leave a comment with your favorite book and at the end of the contest a lucky winner will be randomly chosen. You can share the Facebook page and leave a comment there or tweet on Twitter with the name including @wsirbot containg your favourit book title and author.</p>"
+      }
+    ]
 }
