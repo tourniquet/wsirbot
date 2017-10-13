@@ -25,11 +25,10 @@ html, body {
   background-repeat: no-repeat;
   font-family: 'rwt';
   color: #f9f9f9;
-  text-shadow: 1px 2px 1px #222;
-  font-size: 20px; }
+  font-size: 25px; }
 
 h1 {
-  font-size: 300%; }
+  font-size: 250%; }
 
 h2 {
   font-size: 200%; }
@@ -95,7 +94,8 @@ h2 {
   width: 36px;
   position: absolute;
   height: 50px;
-  right: 25px; }
+  top: 5px;
+  right: 35px; }
   .menu-icon > span {
     box-shadow: 0px 1px 1px #222;
     transition: 0.5s all linear;
@@ -131,8 +131,8 @@ a {
   a:hover {
     text-decoration: none;
     transition: 0.5s all linear;
-    color: #222;
-    text-shadow: 1px 1px 2px #f2f2f2; }
+    color: #f2f2f2;
+    text-shadow: 1px 1px 2px #222; }
 
 .footer {
   margin-top: 15px;
@@ -188,57 +188,55 @@ a {
     top: 60px;
     animation: cloud-animation 30s linear 0s infinite alternate; }
 
+.book, .book > a > img, .book:after, .book:before {
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px; }
+
 .book {
-  margin: 2em;
+  cursor: pointer;
+  display: block;
+  width: 150px;
+  height: 220px;
   position: relative;
-  width: 200px;
-  height: 250px; }
-  .book > .book-cover {
-    background-size: 100% 100%;
-    background-repeat: no-repeat;
-    position: absolute;
-    top: 0;
-    left: 0;
+  background: white;
+  z-index: 1;
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.1), 0 9px 20px 0 rgba(0, 0, 0, 0.25);
+  overflow: hidden;
+  transition: box-shadow .3s linear;
+  margin-top: 15px; }
+  .book > a > img {
+    width: inherit;
+    height: inherit;
+    transform-origin: 0 50%;
+    transform: rotateY(0);
+    transition: all .45s ease;
     width: 100%;
-    height: 100%;
-    text-align: center;
-    box-shadow: 0px 2px 4px #222;
-    background-color: #f2f2f2;
-    z-index: 1; }
-    .book > .book-cover:before {
-      border-left: 10px solid #222;
-      content: "";
-      height: 100%;
-      left: 0;
-      opacity: 0.2;
-      position: absolute;
-      top: 0; }
-  .book-top {
-    background-color: #f2f2f2;
-    border-left: 5px solid #222;
-    border-top: 2px solid #222;
-    box-shadow: 1px 0px 2px #ddd;
-    height: 9px;
-    left: 5px;
+    height: 100%; }
+  .book:hover {
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.25), 0 9px 20px 0 rgba(0, 0, 0, 0.45); }
+    .book:hover img {
+      transform: rotateY(-25deg);
+      box-shadow: 1px 1px 5px 5px rgba(0, 0, 0, 0.2); }
+  .book:after, .book:before {
+    content: '';
+    display: block;
+    width: inherit;
+    height: inherit;
     position: absolute;
-    top: -9px;
-    width: 200px;
-    transform: skew(-45deg, 0deg);
-    -ms-transform: skew(-45deg, 0deg);
-    -webkit-transform: skew(-45deg, 0deg); }
-  .book-right {
-    background-color: #ddd;
-    border-bottom: 1px solid #ddd;
-    border-right: 2px solid #222;
-    box-shadow: 1px 0px 1px #ddd;
-    height: 100%;
-    position: absolute;
-    right: -10px;
-    top: -4px;
-    width: 11px;
-    transform: skew(0deg, -45deg);
-    -ms-transform: skew(0deg, -45deg);
-    -webkit-transform: skew(0deg, -45deg); }
+    z-index: -1;
+    top: 0;
+    background: white;
+    border: 1px solid #d9d9d9; }
+  .book:after {
+    left: -3px; }
+  .book:before {
+    left: -6px; }
+
+.btn {
+  display: inline-block;
+  padding: 15px;
+  border: 1px dashed #f2f2f2;
+  text-align: center; }
 
 .seam {
   border-bottom: 1px dashed #f2f2f2;
@@ -246,11 +244,23 @@ a {
   margin-bottom: 5px; }
 
 .text, .date {
-  font-size: 22px; }
+  font-size: 25px; }
+
+.book-title {
+  text-align: center; }
+
+.btn-container {
+  text-align: center; }
+
+.fa-facebook-square:hover, .fa-twitter-square:hover {
+  font-size: 1.9em; }
 
 @media all and (max-width: 736px) {
+  h1 {
+    font-size: 250%; }
+
   body, html {
-    font-size: 16px; }
+    font-size: 18px; }
 
   .two {
     display: none; }
@@ -258,7 +268,13 @@ a {
   .three {
     display: none; } }
 @media all and (min-width: 998px) {
-  .row {
-    padding-left: 15px; } }
+  .btn-container {
+    text-align: left; }
+
+  .book-title {
+    text-align: left; }
+
+  .btn {
+    text-align: left; } }
 
 /*# sourceMappingURL=main.css.map */

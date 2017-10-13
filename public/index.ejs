@@ -33,92 +33,69 @@
   fjs.parentNode.insertBefore(js, fjs);
 }(document, "script", "facebook-jssdk"));</script>
 
-	<div class="menu-icon">
-       	<span></span>
-       	<span></span>
-       	<span></span>
-    </div>
-	<div class="menu">
-		<div class="row h-100">
-			<div class="col-12 align-self-center text-center">
-			 	<ul class="menu-items">
-			 		<li id="home"><p>Home<span></span></p></li>
-			 		<li id="contest"><p>Contest<span></span></p></li>
-			 	</ul>
-		 	</div>
-		 	<div class="footer col-12 align-self-end text-center">
-				<p>
-					copywrite <i aria-hidden="true" class="fa fa-copyright"></i> Victor Zaporojan<br>
-					<a href="https://github.com/vzapo"><i aria-hidden="true" class="fa fa-2x fa-github"></i></a> <a href="www.twitter.com/zapovic"><i aria-hidden="true" class="fa fa-2x fa-twitter"></i></a>
-				</p>
-			</div>
-	 	</div>
-	 </div>
 
-	<div class="container-fluid">
-		<div class="row">
-			<div class="col-12">
-				<div class="cloud one"></div>
-				<div class="cloud two"></div>
-				<div class="cloud three"></div>
-			</div>
-		</div>
-		<div class="row">
-			<div class="col-sm-12 col-md-12 col-lg-6 text-center">
-				<div class="seam">
-				   	<h1>The book of the day</h1>
+	<div class="container-fluid h-100">
+
+
+			<div class="menu-icon">
+		       	<span></span>
+		       	<span></span>
+		       	<span></span>
+		    </div>
+			<div class="menu">
+				<div class="row h-100">
+					<div class="col-12 align-self-center text-center">
+					 	<ul class="menu-items">
+					 		<li id="home"><p>Home<span></span></p></li>
+					 		<li id="contest"><p>Contest<span></span></p></li>
+					 	</ul>
+				 	</div>
+				 	<div class="footer col-12 align-self-end text-center">
+						<p>
+							copywrite <i aria-hidden="true" class="fa fa-copyright"></i> Victor Zaporojan<br>
+							<a href="https://github.com/vzapo"><i aria-hidden="true" class="fa fa-2x fa-github"></i></a> <a href="www.twitter.com/zapovic"><i aria-hidden="true" class="fa fa-2x fa-twitter"></i></a>
+						</p>
 					</div>
-				</div>
-			</div>
-		<div class="row">
+			 	</div>
+			 </div>
+
+
+					<div class="col-12">
+						<div class="cloud one"></div>
+						<div class="cloud two"></div>
+						<div class="cloud three"></div>
+					</div>
+
+		<div class="row h-100 align-items-center">
 			<div class="col-sm-12 col-md-12 col-lg-6">
-				<div class="book mr-auto ml-auto">
-					<div class="book-cover"></div>
-					<div class="book-top"></div>
-					<div class="book-right"></div>
-				</div>
-			</div>
-		</div>
-			<div class="row">
-				<div class="col-sm-12 col-md-12 col-lg-6">
-					<div class="seam">
-						<div class="row">
-							<div class="col-10 text-left">
-								<h2>Follow us on Twitter</h2>
-							</div>
-							<div class="col-2 text-center">
-								<i aria-hidden="true" class="fa fa-2x fa-twitter"></i>
+				<div class="row">
+					<div class="col-12"><h1 class="seam">Book of the day</h1></div>
+						<div class="col-sm-12 col-md-12 col-lg-8">
+							<div class="row h-100">
+								<div class="col-12 align-self-center"><h3 class="book-title"><%- text %></h3></div>
+								<div class="col-12 align-self-end btn-container">
+									<div class="btn">Follow us for more</div>
+									<div class="social">
+										<a href="http://twitter.com/wsirbot"><i class="fa fa-2x fa-facebook-square" aria-hidden="true"></i></a>
+										<a href="https://www.facebook.com/What-Should-I-Read-wsir-485117375193523/"><i class="fa fa-2x fa-twitter-square" aria-hidden="true"></i></a>
+									</div>
+								</div>
 							</div>
 						</div>
-					</div>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-sm-12 col-md-12 col-lg-6">
-					<a class="twitter-timeline" data-height="300" href="https://twitter.com/wsirbot?ref_src=twsrc%5Etfw">Tweets by wsirbot</a> <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-sm-12 col-md-12 col-lg-6">
-					<div class="seam text-left">
-							 <div class="row">
-								 <div class="col-10 text-left"><h2>Follow us on Facebook</h2></div>
-								 <div class="col-2 text-center"><i aria-hidden="true" class="fa fa-2x fa-facebook"></i></div>
-						</div>
-					</div>
-
-						<div class="row">
-							<div class="col-12 fb text-center">
-
-						 </div>
+						<div class="col-sm-12 col-md-12 col-lg-4">
+							<div class="book mr-auto ml-auto">
+								<a href=""><img src=""></a>
+							</div>
 						</div>
 				</div>
 			</div>
 		</div>
+
+	</div>
 
 	<script async charset="utf-8" src="//platform.twitter.com/widgets.js">
 	</script>
-	<script src="https://code.jquery.com/jquery-3.1.1.slim.min.js">
+	<script src="https://code.jquery.com/jquery-3.1.1.js">
 	</script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js">
 	</script>
@@ -126,17 +103,14 @@
 	</script>
 
 	<script>
-
+console.log('url', "<%= url %>");
 	$(document).ready(function(){
-		var width = 200;
-		if($(document).width()>998){
-			width = 400;
-		}
-		var fb = `<div class="col-12 text-center">
-		<div class="fb-page text-center ml-auto mr-auto" data-href="https://www.facebook.com/What-Should-I-Read-wsir-485117375193523/" data-tabs="timeline" data-width="${width}" data-height="300" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true"><blockquote cite="https://www.facebook.com/What-Should-I-Read-wsir-485117375193523/" class="fb-xfbml-parse-ignore"><a href="https://www.facebook.com/What-Should-I-Read-wsir-485117375193523/">What Should I Read? #wsir</a></blockquote></div>
-		</div>`;
-		$(".fb > .ribbon > .ribbon-content > .seam").append(fb);
-		$(".book-cover").css("background-image","url(<%= cover %>)");
+		$('.social').hide();
+		$('.btn').click(function(){
+			$('.social').slideToggle();
+		});
+		$('.book > a').attr('href','<%= url %>');
+		$(".book > a > img").attr("src","<%= cover %>");
 		$(".menu-icon").on("click",function(){
             $(this).toggleClass("active");
             $(".menu").toggleClass("show-menu");

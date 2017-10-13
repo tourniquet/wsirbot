@@ -67,16 +67,15 @@
 						   			    </div>
 			   			    		<% }else{ %>
 			   			    		<% for(var i=0; i<data.contest.length; i++) {%>
-					   			    	<div class="post">
-						   			        <h2 class="title text-center underline">
+					   			    	<div class="seam">
+						   			        <h2 class="title text-center">
 
 						   			            <%= data.contest[i].title %>
 
 						   			        </h2>
 						   			        <img src="<%= data.contest[i].img %>" class="img-fluid img-thumbnail">
 						   			        <div class="date">
-						   			        	<span class="underline">															<i class="fa fa-calendar" aria-hidden="true"></i>
- Date</span>: <%= data.contest[i].date %>
+						   			        	<span class="underline">When</span>: <%= data.contest[i].date %>
 						   			        </div>
 						   			        <div class="text">
  														<%- data.contest[0].text %>

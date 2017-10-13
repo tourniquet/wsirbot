@@ -2,10 +2,12 @@ $blue-light:#1DDCED;
 $white:#f2f2f2;
 $whiteish:#f9f9f9;
 $dark:#222;
-$brown:#77460C;
-$brown-light:#CB7C22;
-$brown-dark:#5d3709;
-$grey:#ddd;
+$color-bg: #fde3a7;
+$book-color-bg: lighten($color-bg, 20%);
+$book-color-border: lighten(#000, 85%);
+$book-border: 1px solid $book-color-border;
+
+
 @mixin border-radius($radius,$pos){
     border-top-left-radius:$radius;
     border-top-right-radius:$radius;
@@ -53,12 +55,11 @@ html, body{
     background-repeat: no-repeat;
     font-family: 'rwt';
     color:$whiteish;
-    text-shadow: 1px 2px 1px $dark;
-    font-size:20px;
+    font-size:25px;
 }
 
 h1 {
-  font-size:300%;
+  font-size:250%;
 }
 h2{
   font-size:200%;
@@ -133,7 +134,8 @@ h2{
     width:36px;
     position:absolute;
     height:50px;
-    right:25px;
+    top:5px;
+    right:35px;
     & > span {
       box-shadow: 0px 1px 1px $dark;
       transition:0.5s all linear;
@@ -170,8 +172,8 @@ a{
   &:hover{
     text-decoration:none;
     transition:0.5s all linear;
-    color:$dark;
-    text-shadow:1px 1px 2px $white;
+    color:$white;
+    text-shadow:1px 1px 2px $dark;
   }
 }
 
@@ -231,74 +233,98 @@ a{
   }
 }
 
+%book-rounded-corners {
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+}
+
+
 .book {
-  margin:2em;
+  @extend %book-rounded-corners;
+
+  cursor: pointer;
+  display: block;
+  width: 150px;
+  height: 220px;
   position: relative;
-  width: 200px;
-  height: 250px;
-  & > .book-cover{
-      background-size:100% 100%;
-      background-repeat:no-repeat;
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      text-align: center;
-      box-shadow: 0px 2px 4px $dark;
-      background-color:$white;
-      z-index: 1;
-      &:before{
-        border-left: 10px solid $dark;
-        content: "";
-        height: 100%;
-        left: 0;
-        opacity: 0.2;
-        position: absolute;
-        top: 0;
-      }
+  background: $book-color-bg;
+  z-index: 1;
+  box-shadow: 0 2px 4px 0 rgba(#000, .1), 0 9px 20px 0 rgba(#000, .25);
+  overflow: hidden;
+  transition: box-shadow .3s linear;
+  margin-top:15px;
+  & > a {
+    & > img {
+      @extend %book-rounded-corners;
+      width: inherit;
+      height: inherit;
+      transform-origin: 0 50%;
+      transform: rotateY(0);
+      transition: all .45s ease;
+      width:100%;
+      height:100%;
+    }
   }
-  &-top {
-    background-color: $white;
-    border-left: 5px solid #222;
-    border-top: 2px solid #222;
-    box-shadow: 1px 0px 2px $grey;
-    height: 9px;
-    left: 5px;
-    position: absolute;
-    top: -9px;
-    width: 200px;
-    transform: skew(-45deg, 0deg);
-    -ms-transform: skew(-45deg, 0deg);
-    -webkit-transform: skew(-45deg, 0deg);
+  &:hover{
+    box-shadow: 0 2px 4px 0 rgba(#000, .25), 0 9px 20px 0 rgba(#000, .45);
+
+    img {
+      transform: rotateY(-25deg);
+      box-shadow: 1px 1px 5px 5px rgba(#000, .2);
+    }
   }
-  &-right {
-    background-color: $grey;
-    border-bottom: 1px solid $grey;
-    border-right: 2px solid $dark;
-    box-shadow: 1px 0px 1px $grey;
-    height: 100%;
+  &:after, &:before{
+    @extend %book-rounded-corners;
+
+    content: '';
+    display: block;
+    width: inherit;
+    height: inherit;
     position: absolute;
-    right: -10px;
-    top: -4px;
-    width: 11px;
-    transform: skew(0deg, -45deg);
-    -ms-transform: skew(0deg, -45deg);
-    -webkit-transform: skew(0deg, -45deg);
+    z-index: -1;
+    top: 0;
+    background: $book-color-bg;
+    border: $book-border;
+  }
+  &:after{
+     left: -3px;
+  }
+  &:before{
+    left: -6px;
   }
 }
 
+.btn{
+  display:inline-block;
+  padding:15px;
+  border:1px dashed $white;
+  text-align: center;
+}
 .seam{
   border-bottom:1px dashed $white;
   margin-top:5px;
   margin-bottom:5px;
 }
 .text, .date{
-  font-size:22px;
+  font-size:25px;
 }
+.book-title{
+  text-align: center;
+}
+.btn-container{
+  text-align: center;
+}
+
+.fa-facebook-square:hover, .fa-twitter-square:hover{
+  font-size: 1.9em;
+}
+
 @media all and (max-width:736px){
+  h1{
+    font-size:250%;
+  }
   body, html{
-    font-size:16px;
+    font-size:18px;
   }
 
   .two{
@@ -309,7 +335,13 @@ a{
   }
 }
 @media all and (min-width:998px){
-  .row{
-    padding-left:15px;
+  .btn-container{
+    text-align: left;
+  }
+  .book-title{
+    text-align: left;
+  }
+  .btn{
+    text-align: left;
   }
 }
