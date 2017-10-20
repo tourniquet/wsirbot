@@ -74,7 +74,7 @@
 							<div class="row h-100">
 								<div class="col-12 align-self-center"><h3 class="book-title"><%- text %></h3></div>
 								<div class="col-12 align-self-end btn-container">
-									<div class="btn">Follow us for more</div>
+									<div class="btn">Follow us </div>
 									<div class="social">
 										<a href="http://twitter.com/wsirbot"><i class="fa fa-2x fa-facebook-square" aria-hidden="true"></i></a>
 										<a href="https://www.facebook.com/What-Should-I-Read-wsir-485117375193523/"><i class="fa fa-2x fa-twitter-square" aria-hidden="true"></i></a>
@@ -103,7 +103,6 @@
 	</script>
 
 	<script>
-console.log('url', "<%= url %>");
 	$(document).ready(function(){
 		$('.social').hide();
 		$('.btn').click(function(){
@@ -122,16 +121,9 @@ console.log('url', "<%= url %>");
 				}else{
 					window.location.href = "/"+$(this).attr("id");
 				}
-
 			})
 		})
 	})
-
-	if($(document).width()>560){
-		$('.fb').append('<div class="fb-page" data-href="https://www.facebook.com/What-Should-I-Read-wsir-485117375193523/" data-tabs="timeline" data-width="500" data-height="300" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true"><blockquote cite="https://www.facebook.com/What-Should-I-Read-wsir-485117375193523/" class="fb-xfbml-parse-ignore"><a href="https://www.facebook.com/What-Should-I-Read-wsir-485117375193523/">What Should I Read? #wsir</a></blockquote></div>');
-	}else{
-		$('.fb').append('<div class="fb-page" data-href="https://www.facebook.com/What-Should-I-Read-wsir-485117375193523/" data-tabs="timeline" data-width="270" data-height="300" data-small-header="false" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true"><blockquote cite="https://www.facebook.com/What-Should-I-Read-wsir-485117375193523/" class="fb-xfbml-parse-ignore"><a href="https://www.facebook.com/What-Should-I-Read-wsir-485117375193523/">What Should I Read? #wsir</a></blockquote></div>');
-	}
 	</script>
 </body>
 </html>

@@ -113,7 +113,7 @@ wsirBot.checkPost(function(answer){
 })
 
 // Hack for heroku to keep app alive and log any errors
-const min_log = 1000 * 60 * 15;
+const min_log = 1000 * 60 * 25;
 let logging = setInterval(function(){
     let date = new Date();
     console.log(date.getHours() + ":" + date.getMinutes() + " BOT active!...");

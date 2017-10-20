@@ -256,9 +256,6 @@ a {
   font-size: 1.9em; }
 
 @media all and (max-width: 736px) {
-  h1 {
-    font-size: 250%; }
-
   body, html {
     font-size: 18px; }
 

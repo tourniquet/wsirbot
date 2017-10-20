@@ -73,14 +73,12 @@
 						   			            <%= data.contest[i].title %>
 
 						   			        </h2>
-						   			        <img src="<%= data.contest[i].img %>" class="img-fluid img-thumbnail">
 						   			        <div class="date">
 						   			        	<span class="underline">When</span>: <%= data.contest[i].date %>
 						   			        </div>
 						   			        <div class="text">
  														<%- data.contest[0].text %>
 						   			        </div>
-						   			        <p>To see the winner go on Twitter of Facebook page.</p>
 						   			    </div>
 				   			        <% } %>
 			   			        <% } %>
@@ -105,7 +103,6 @@
 	</script>
 
 	<script>
-	console.log('<%= data.contest[0].text %>')
         $('.menu-icon').on('click',function(){
             $(this).toggleClass('active');
             $('.menu').toggleClass('show-menu');

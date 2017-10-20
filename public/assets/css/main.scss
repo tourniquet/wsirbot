@@ -49,7 +49,6 @@ html, body{
     width:100%;
     overflow-x:hidden;
     background-color: $blue-light;
-    background-image: url('../imgs/bg.svg');
     background-position: bottom;
     background-size:100%;
     background-repeat: no-repeat;
@@ -61,6 +60,7 @@ html, body{
 h1 {
   font-size:250%;
 }
+
 h2{
   font-size:200%;
 }
@@ -72,6 +72,7 @@ h2{
 .underline{
   border-bottom:1px solid $white;
 }
+
 .menu{
   z-index:9998;
   right:0;
@@ -123,6 +124,7 @@ h2{
     }
   }
 }
+
 .show-menu{
   width:50%;
   visibility:visible;
@@ -320,9 +322,7 @@ a{
 }
 
 @media all and (max-width:736px){
-  h1{
-    font-size:250%;
-  }
+
   body, html{
     font-size:18px;
   }
@@ -334,6 +334,7 @@ a{
     display:none;
   }
 }
+
 @media all and (min-width:998px){
   .btn-container{
     text-align: left;
