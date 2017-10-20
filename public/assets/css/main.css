@@ -18,14 +18,15 @@ html, body {
   height: 100%;
   width: 100%;
   overflow-x: hidden;
-  background-color: #1DDCED;
   background-image: url("../imgs/bg.svg");
+  background-color: #1DDCED;
   background-position: bottom;
   background-size: 100%;
   background-repeat: no-repeat;
   font-family: 'rwt';
   color: #f9f9f9;
-  font-size: 25px; }
+  font-size: 18px;
+  line-height: 1.2; }
 
 h1 {
   font-size: 250%; }
@@ -232,14 +233,19 @@ a {
   .book:before {
     left: -6px; }
 
+.social {
+  padding-top: 15px; }
+
 .btn {
   display: inline-block;
   padding: 15px;
-  border: 1px dashed #f2f2f2;
-  text-align: center; }
+  border: 1.5px dashed #f2f2f2;
+  text-align: center;
+  background-color: transparent;
+  color: #f2f2f2; }
 
 .seam {
-  border-bottom: 1px dashed #f2f2f2;
+  border-bottom: 1.5px dashed #f2f2f2;
   margin-top: 5px;
   margin-bottom: 5px; }
 
@@ -264,7 +270,14 @@ a {
 
   .three {
     display: none; } }
+.heading {
+  text-align: center;
+  text-shadow: 0px 0px 1px #222; }
+
 @media all and (min-width: 998px) {
+  .heading {
+    text-align: left; }
+
   .btn-container {
     text-align: left; }
 
@@ -273,5 +286,8 @@ a {
 
   .btn {
     text-align: left; } }
+@media all and (max-width: 998px) {
+  body, html {
+    font-size: 110%; } }
 
 /*# sourceMappingURL=main.css.map */

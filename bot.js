@@ -2,10 +2,12 @@
 let twit = require("twit");
 let config = require("./config.js");
 let goodreads = require("./goodread.js");
+let log = require('./logger.js');
 
 
 // Pass the configuration to Twitter app
 let Twitter = new twit(config.config_twitter);
+let logger = new log();
 
 // BOT =========================
 let wsirBot = {
@@ -22,34 +24,24 @@ let wsirBot = {
             }
 
             // Check for tweet in case of a restart of server / malfunction
-            console.log(date.getHours() + ":" + date.getMinutes() + " Checking for tweet in the last 24h...");
+            logger.log(logger.info," Checking for tweet in the last 24h...")
             let last_tweet_date = data[0].created_at.substring(8, 11);
             if (last_tweet_date == date.getDate()) {
                 answer = true;
-                console.log(date.getHours() + ":" + date.getMinutes() + " Post grabed:\n Post ID - " + data[0].id + "\n Post text - " + data[0].text);
+                logger.log(logger.info," Post grabed:\n Post ID - " + data[0].id + "\n Post text - " + data[0].text);
             }
             return callback(answer);
         });
     },
     postTweet : function(letters,callback) {
-    let date = new Date();
     let self = this;
-    console.log(date.getHours() + ":" + date.getMinutes() + " Tweeting process START!");
+    logger.log(logger.info, " Tweeting process START!");
         // Get book
         goodreads.getBook(letters, function(data) {
+            logger.log(logger.info, " Got the book! Continue with tweeting process");
+            
             let done = false;
-            console.log(date.getHours() + ":" + date.getMinutes() + " Got the book! Continue with tweeting process");
-            let year = date.getFullYear();
-            let month;
-            if (date.getMonth >= 10) {
-                month = date.getMonth();
-            } else {
-                month = "0" + date.getMonth();
-            }
-            let day = date.getDate();
-            let time = year + "-" + month + "-" + day;
             let book = data;
-            let last_tweet_date;
 
             // Compose params for twitter
             let msg = "Today's pick:" + book.bookN +
@@ -72,24 +64,24 @@ let wsirBot = {
                 params.status = "Today's pick: " + book.bookN +
                     "-" + authorStr +
                     " @ "+ book.bookS + tags;
-                console.log(date.getHours() + ":" + date.getMinutes() +" Got new status:" + params.status);
+                logger.log(logger.info, " Got the book! Continue with tweeting process");
                 if (params.status.length >= 140) {
-                    console.log(date.getHours() + ":" + date.getMinutes() +" New status still to long, getting a new one.");
+                    logger.log(logger.warn, " New status still to long, getting a new one.");
                     self.postTweet(self.letters,function(answer){
-                      console.log('Post finished: ' + answer)
+                        logger.log(logger.info, 'Post finished: ' + answer);
                     });
                 }
             }
 
             // Post the tweet
             Twitter.post("statuses/update", params, function(err, data) {
-                let date = new Date();
                 // Check if error is present, if not continue
                  if (!err) {
-                     console.log(date.getHours() + ":" + date.getMinutes() + " Twitter INFO " + "Incoming data: " + data.id + " " + data);
-                     done = true;
+                    let message = " Tweet data: " + "ID: " + data.id +" TEXT: " +data.text +" CREATED_AT: " +data.created_at;
+                    logger.log(logger.info, message);
+                    done = true;
                  } else {
-                     console.log(date.getHours() + ":" + date.getMinutes() + " Ended...");
+                    logger.log(logger.error, err);
                  }
                  return callback(done);
             });
@@ -99,15 +91,15 @@ let wsirBot = {
 
 // Launch the application
 wsirBot.checkPost(function(answer){
-    let date = new Date();
-    console.log(date.getHours() + ":" + date.getMinutes() + " Application START!");
+    logger.log(logger.info, " Application START!");
     // One more check as Heroku does random restarts.
     if(answer){
-        console.log(date.getHours() + ":" + date.getMinutes() + " Skiped posting. Found tweet.");
+        logger.log(logger.info, " Application START!");
+        logger.log(logger.warn, " Skiped posting. Found tweet.");
     }else{
-        console.log(date.getHours() + ":" + date.getMinutes() + " No tweet found after restart app.");
+        logger.log(logger.warn,  " No tweet found after restart app.");
         wsirBot.postTweet(wsirBot.letters,function(answer){
-          console.log('Post finished: ' + answer)
+            logger.log(logger.info, ' Post finished: ' + answer);
         });
     }
 })
@@ -116,21 +108,21 @@ wsirBot.checkPost(function(answer){
 const min_log = 1000 * 60 * 25;
 let logging = setInterval(function(){
     let date = new Date();
-    console.log(date.getHours() + ":" + date.getMinutes() + " BOT active!...");
-    console.log(date.getHours() + ":" + date.getMinutes() + " Checking if it's time to post")
+    logger.log(logger.info, " BOT active!...");
+    logger.log(logger.info, " Checking if it's time to post");
     if(date.getHours() == 9){
         wsirBot.checkPost(function(answer){
             if(answer){
-                console.log(date.getHours() + ":" + date.getMinutes() + " Tweet found! Skip posting until tomorrow.");
+                logger.log(logger.info, " Tweet found! Skip posting until tomorrow.");
             }else{
-                console.log(date.getHours() + ":" + date.getMinutes() + " Time to post, no tweet found");
+                logger.log(logger.info, " Time to post, no tweet found");
                 wsirBot.postTweet(wsirBot.letters,function(answer){
-                  console.log('Post finished: ' + answer)
+                  logger.log(logger.info, ' Post finished: ' + answer);
                 });
             }
         })
     }else{
-        console.log(date.getHours() + ":" + date.getMinutes() + " Not posting now. Time is: "+ date.getHours() + ":" + date.getMinutes() + ". Will post at 9am in the morning!");
+        logger.log(logger.warn, " Not posting now. Will post at 9am in the morning");
     }
 },min_log)
 

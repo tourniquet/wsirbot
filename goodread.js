@@ -1,6 +1,8 @@
 let config = require("./config.js");
 let goodreads = require('goodreads-api-node');
 const grclient = goodreads(config.config_goodreads);
+let log = require('./logger.js');
+let logger = new log();
 
 let book = {
     bookA : '',
@@ -11,7 +13,7 @@ let book = {
 let searchBook = {
     getBook: function(list,callback){
         let date = new Date();
-        console.log(date.getHours() + ":" + date.getMinutes() + ' Getting a book:');
+        logger.log(logger.info,' Getting a book:')
         let alphabet = list.split('');
         let nr = Math.floor(Math.random() * alphabet.length);
         let letter = alphabet[nr];
@@ -28,7 +30,7 @@ let searchBook = {
 
             do {
                 randomNrB = Math.floor(Math.random() * response.search.results.work.length);
-                console.log('Rating of book: '+response.search.results.work[randomNrB].average_rating);
+                logger.log(logger.info,'Rating of book: '+response.search.results.work[randomNrB].average_rating);
             }
             while (response.search.results.work[randomNrB].average_rating <= 3.8);
             let bookName = response.search.results.work[randomNrB].best_book.title;
@@ -38,19 +40,18 @@ let searchBook = {
             book.bookA = bookAuthor;
             book.bookN = bookName;
             book.bookS = "https://www.goodreads.com/book/show/"+bookId;
-
-    	    console.log(date.getHours() + ":" + date.getMinutes() + ' Book picked: '+ bookAuthor + ' - ' + bookName);
+            logger.log(logger.info,' Book picked: '+ bookAuthor + ' - ' + bookName);
             callback(book);
 
         }).catch((err) => {
           // Handle any error that occurred in any of the previous
           // promises in the chain.
-             console.log(date.getHours() + ":" + date.getMinutes() + ' Ended ' + err);
+            logger.log(logger.error, ' Ended ' + err);
         });
     },
     getCover:function(book,callback){
         let date = new Date();
-        console.log(date.getHours() + ":" + date.getMinutes() + ' Getting the cover for the book');
+        logger.log(logger.info,' Getting the cover for the book');
 
         // Query for GoodRead search
         let query_book = {
@@ -65,14 +66,14 @@ let searchBook = {
             }else{
               bookCover =  response.search.results.work[0].best_book.image_url;
             }
+            logger.log(logger.info,' Book cover: '+bookCover);
 
-    	      console.log(date.getHours() + ":" + date.getMinutes() + ' Book cover: '+bookCover);
             callback(bookCover);
 
         }).catch((err) => {
           // Handle any error that occurred in any of the previous
           // promises in the chain.
-             console.log(date.getHours() + ":" + date.getMinutes() + ' Ended ' + err);
+            logger.log(logger.error, ' Ended ' + err);
         });
     }
 }
