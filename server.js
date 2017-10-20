@@ -30,7 +30,7 @@ app.get('/', function (req, res) {
         let title = text.split('-')[0];
         console.log(time+ ': Got tweet at '+ time + " with >>\n" + " ID: "+id + "\n Text: "+text);
         goodreads.getCover(title,function(cover){
-            res.render('index',{text,cover,url,bg});
+            res.render('index',{text,cover,url});
         });
     });
 })
