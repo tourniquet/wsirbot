@@ -56,8 +56,8 @@ let wsirBot = {
             
             // if message length is higher than maximum allowed on twitter, trim the author name on half
             if (params.status.length >= 140) {
-                let len = book.autor.length / 2;
-                let authorStr = book.autor.substring(0, len);
+                let len = book.author.length / 2;
+                let authorStr = book.author.substring(0, len);
                 authorStr += "...";
                 params.status = "Today's pick: " + book.title +
                     "-" + authorStr +
