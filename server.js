@@ -1,9 +1,9 @@
 let express = require('express');
-let goodreads = require("./goodread.js");
+let goodreads = require("./lib/goodread.js");
 let twit = require('twit');
 let path = require('path');
-let log = require('./logger.js');
-const config = require("./config.js");
+let log = require('./lib/logger.js');
+const config = require("./lib/config.js");
 let Twitter = new twit(config.config_twitter);
 
 let app = express();

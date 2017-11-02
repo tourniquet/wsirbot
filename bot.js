@@ -1,8 +1,8 @@
 //Require dependecy
 let twit = require("twit");
-let config = require("./config.js");
-let goodreads = require("./goodread.js");
-let log = require('./logger.js');
+let config = require("./lib/config.js");
+let goodreads = require("./lib/goodread.js");
+let log = require('./lib/logger.js');
 
 
 // Pass the configuration to Twitter app
