@@ -32,21 +32,21 @@ let wsirBot = {
             return callback(answer);
         });
     },
-    postTweet : function(callback) {
+    postTweet : function() {
             let self = this;
             logger.log(logger.info, "Tweeting process started!");
             
             goodreads.getBook(goodreads.word()).then(data =>{
             logger.log(logger.info, " Got the book! Continue with tweeting process");
             
-            let done = false;
             let book = data;
+            
             // Compose message to post
             let msg = "Today's pick:" + book.title +
                 "-" + book.author +
                 " @ ";
-            msg += book.url;
-            const tags = " #WSIR #book #WhatShouldIRead";
+                msg+=book.url
+            const tags = " #wsir #book #WhatShouldIRead";
             
             let params = {
                 q: "",
@@ -62,46 +62,43 @@ let wsirBot = {
                 params.status = "Today's pick: " + book.title +
                     "-" + authorStr +
                     " @ "+ book.url + tags;
-                logger.log(logger.info, " Got the book! Continue with tweeting process");
+                logger.log(logger.info, " Got new status");
                 if (params.status.length >= 140) {
-                    logger.log(logger.warn, " New status still to long, getting a new one.");
-                    self.postTweet(self.letters,function(answer){
-                        logger.log(logger.info, 'Post finished: ' + answer);
-                    });
+                    logger.log(logger.warn, " New status still to long, getting a new book.");
+                    setTimeout(function(){
+                        logger.log(logger.warn,'Timeout ended. Restart after 1s');
+                        self.postTweet()
+                    },1000);
+                    return;
                 }
             }
-    
+            
             // Post the tweet message has been composed
             Twitter.post("statuses/update", params, function(err, data) {
                 // Check if error is present, if not continue
                  if (!err) {
                     let message = " Tweet data: " + "ID: " + data.id +" TEXT: " +data.text +" CREATED_AT: " +data.created_at;
                     logger.log(logger.info, message);
-                    done = true;
                  } else {
                     logger.log(logger.error, err);
                  }
-                 return callback(done);
             });
-        })
+        });
     }
 }
 
 // Launch the application
 wsirBot.checkPost(function(answer){
-    logger.log(logger.info, "Application START!");
     // One more check as Heroku does random restarts.
     if(answer){
         logger.log(logger.warn, "Skiped posting. Found tweet.");
     }else{
         logger.log(logger.warn,  "No tweet found after restart app.");
-        wsirBot.postTweet(function(answer){
-            logger.log(logger.info, "Post finished: " + answer);
-        });
+        wsirBot.postTweet();
     }
 })
 
-// Hack for heroku to keep app alive and log any errors
+// Check every  set time if needs to repost or not.
 const min_log = 1000 * 60 * 25;
 let logging = setInterval(function(){
     let date = new Date();
@@ -113,13 +110,11 @@ let logging = setInterval(function(){
                 logger.log(logger.info, "Tweet found! Skip posting until tomorrow.");
             }else{
                 logger.log(logger.info, "Time to post, no tweet found");
-                wsirBot.postTweet(function(answer){
-                  logger.log(logger.info, "Post finished: " + answer);
-                });
+                wsirBot.postTweet();
             }
         })
     }else{
-        logger.log(logger.warn, " Not posting now. Will post at 9am in the morning");
+        logger.log(logger.warn, "Not posting now. Will post at 9am in the morning");
     }
 },min_log)
 
