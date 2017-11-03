@@ -25,7 +25,9 @@ let wsirBot = {
             // Check for tweet in case of a restart of server / malfunction
             logger.log(logger.info,"Checking for tweet in the last 24h...")
             let last_tweet_date = data[0].created_at.substring(8, 11);
-            if (last_tweet_date == date.getDate()) {
+            if (last_tweet_date !== date.getDate() && date.getHours() == 9) {
+                logger.log(logger.info,"Posting.");
+            }else{
                 answer = true;
                 logger.log(logger.info,"Post grabed:\n Post ID - " + data[0].id + "\n Post text - " + data[0].text);
             }
@@ -98,24 +100,19 @@ wsirBot.checkPost(function(answer){
     }
 })
 
-// Check every  set time if needs to repost or not.
-const min_log = 1000 * 60 * 25;
+// Constat logging to keep the bot active (in case schedule-job fails)
+const min_log = 1000 * 60 * 29;
 let logging = setInterval(function(){
-    let date = new Date();
-    logger.log(logger.info, "BOT active!...");
-    logger.log(logger.info, "Checking if it's time to post");
-    if(date.getHours() == 9){
-        wsirBot.checkPost(function(answer){
-            if(answer){
-                logger.log(logger.info, "Tweet found! Skip posting until tomorrow.");
-            }else{
-                logger.log(logger.info, "Time to post, no tweet found");
-                wsirBot.postTweet();
-            }
-        })
+    logger.log(logger.info, "Keeping worker/bot active!...");
+    wsirBot.checkPost(function(answer){
+    if(answer){
+        logger.log(logger.warn, "Skiped posting. Found tweet.");
     }else{
-        logger.log(logger.warn, "Not posting now. Will post at 9am in the morning");
+        logger.log(logger.warn,  "No tweet found after restart app.");
+        wsirBot.postTweet();
     }
+})
 },min_log)
+
 
 module.exports = wsirBot;
