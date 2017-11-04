@@ -22,7 +22,6 @@ let wsirBot = {
                logger.log(logger.error,err)
             }
             let day = date.getDate();
-            console.log(day.toString().length)
             if(day.toString().length==1){
               day = "0"+date.getDate();
             }
