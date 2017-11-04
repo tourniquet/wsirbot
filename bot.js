@@ -21,11 +21,15 @@ let wsirBot = {
             if (err) {
                logger.log(logger.error,err)
             }
-
+            let day = date.getDate();
+            console.log(day.toString().length)
+            if(day.toString().length==1){
+              day = "0"+date.getDate();
+            }
             // Check for tweet in case of a restart of server / malfunction
             logger.log(logger.info,"Checking for tweet in the last 24h...")
-            let last_tweet_date = data[0].created_at.substring(8, 11);
-            if (last_tweet_date !== date.getDate() && date.getHours() == 9) {
+            let last_tweet_date = data[0].created_at.substring(8, 10);
+            if (last_tweet_date !== day && date.getHours() == 9) {
                 logger.log(logger.info,"Posting.");
             }else{
                 answer = true;
@@ -101,17 +105,17 @@ wsirBot.checkPost(function(answer){
 })
 
 // Constat logging to keep the bot active (in case schedule-job fails)
-const min_log = 1000 * 60 * 29;
+const min_log = 1000 * 60 * 60;
 let logging = setInterval(function(){
     logger.log(logger.info, "Keeping worker/bot active!...");
-  //   wsirBot.checkPost(function(answer){
-  //   if(answer){
-  //       logger.log(logger.warn, "Skiped posting. Found tweet.");
-  //   }else{
-  //       logger.log(logger.warn,  "No tweet found after restart app.");
-  //       wsirBot.postTweet();
-  //   }
-  // })
+    wsirBot.checkPost(function(answer){
+    if(answer){
+        logger.log(logger.warn, "Skiped posting. Found tweet.");
+    }else{
+        logger.log(logger.warn,  "No tweet found after restart app.");
+        wsirBot.postTweet();
+    }
+  })
 },min_log)
 
 
