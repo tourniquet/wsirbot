@@ -37,25 +37,25 @@ let wsirBot = {
     postTweet : function() {
             let self = this;
             logger.log(logger.info, "Tweeting process started!");
-            
+
             goodreads.getBook(goodreads.word()).then(data =>{
             logger.log(logger.info, " Got the book! Continue with tweeting process");
-            
+
             let book = data;
-            
+
             // Compose message to post
             let msg = "Today's pick:" + book.title +
                 "-" + book.author +
                 " @ ";
                 msg+=book.url
             const tags = " #wsir #book #WhatShouldIRead";
-            
+
             let params = {
                 q: "",
                 status: msg + tags,
                 lang: "en",
             }
-            
+
             // if message length is higher than maximum allowed on twitter, trim the author name on half
             if (params.status.length >= 140) {
                 let len = book.author.length / 2;
@@ -74,7 +74,7 @@ let wsirBot = {
                     return;
                 }
             }
-            
+
             // Post the tweet message has been composed
             Twitter.post("statuses/update", params, function(err, data) {
                 // Check if error is present, if not continue
@@ -104,14 +104,14 @@ wsirBot.checkPost(function(answer){
 const min_log = 1000 * 60 * 29;
 let logging = setInterval(function(){
     logger.log(logger.info, "Keeping worker/bot active!...");
-    wsirBot.checkPost(function(answer){
-    if(answer){
-        logger.log(logger.warn, "Skiped posting. Found tweet.");
-    }else{
-        logger.log(logger.warn,  "No tweet found after restart app.");
-        wsirBot.postTweet();
-    }
-})
+  //   wsirBot.checkPost(function(answer){
+  //   if(answer){
+  //       logger.log(logger.warn, "Skiped posting. Found tweet.");
+  //   }else{
+  //       logger.log(logger.warn,  "No tweet found after restart app.");
+  //       wsirBot.postTweet();
+  //   }
+  // })
 },min_log)
 
 
