@@ -47,10 +47,11 @@ let wsirBot = {
             let book = data;
 
             // Compose message to post
-            let msg = "Today's pick:" + book.title +
+            let msg = "Today's pick: " + book.title +
                 "-" + book.author +
-                " @ ";
+                ". Read more at ";
                 msg+=book.url
+
             const tags = " #wsir #book #WhatShouldIRead";
 
             let params = {
@@ -60,7 +61,7 @@ let wsirBot = {
             }
 
             // if message length is higher than maximum allowed on twitter, trim the author name on half
-            if (params.status.length >= 140) {
+            if (params.status.length >= 280) {
                 let len = book.author.length / 2;
                 let authorStr = book.author.substring(0, len);
                 authorStr += "...";
@@ -68,7 +69,7 @@ let wsirBot = {
                     "-" + authorStr +
                     " @ "+ book.url + tags;
                 logger.log(logger.info, " Got new status");
-                if (params.status.length >= 140) {
+                if (params.status.length >= 280) {
                     logger.log(logger.warn, " New status still to long, getting a new book.");
                     setTimeout(function(){
                         logger.log(logger.warn,'Timeout ended. Restart after 1s');
@@ -87,6 +88,7 @@ let wsirBot = {
                  } else {
                     logger.log(logger.error, err);
                  }
+                 process.exit(0);
             });
         });
     }
@@ -97,6 +99,7 @@ wsirBot.checkPost(function(answer){
     // One more check as Heroku does random restarts.
     if(answer){
         logger.log(logger.warn, "Skiped posting. Found tweet.");
+        process.exit(0);
     }else{
         logger.log(logger.warn,  "No tweet found after restart app.");
         wsirBot.postTweet();
@@ -104,18 +107,18 @@ wsirBot.checkPost(function(answer){
 })
 
 // Constat logging to keep the bot active (in case schedule-job fails)
-const min_log = 1000 * 60 * 60;
-let logging = setInterval(function(){
-    logger.log(logger.info, "Keeping worker/bot active!...");
-    wsirBot.checkPost(function(answer){
-    if(answer){
-        logger.log(logger.warn, "Skiped posting. Found tweet.");
-    }else{
-        logger.log(logger.warn,  "No tweet found after restart app.");
-        wsirBot.postTweet();
-    }
-  })
-},min_log)
+// const min_log = 1000 * 60 * 60;
+// let logging = setInterval(function(){
+//     logger.log(logger.info, "Keeping worker/bot active!...");
+//     wsirBot.checkPost(function(answer){
+//     if(answer){
+//         logger.log(logger.warn, "Skiped posting. Found tweet.");
+//     }else{
+//         logger.log(logger.warn,  "No tweet found after restart app.");
+//         wsirBot.postTweet();
+//     }
+//   })
+// },min_log)
 
 
 module.exports = wsirBot;
