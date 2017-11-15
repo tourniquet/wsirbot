@@ -19,12 +19,9 @@
     "express": "^4.15.4",
     "goodreads": "^0.1.0",
     "goodreads-api-node": "0.0.5",
-    "handlebars": "^4.0.10",
     "mocha": "^4.0.1",
-    "node-sass": "^4.5.3",
     "path": "^0.12.7",
     "random-word": "^2.0.0",
-    "simple-node-logger": "^0.93.28",
     "twit": "^2.2.9"
   }
 }

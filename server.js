@@ -22,10 +22,10 @@ app.get('/', function (req, res) {
     Twitter.get('statuses/user_timeline', {screen_name: 'wsirbot', count:1}, function(err, data, response) {
         if(err){ console.log(err) }
         let id = data[0].id;
-        let url = data[0].text.substring(data[0].text.indexOf("@")+1,data[0].text.indexOf(" #"));
-        let text = data[0].text.substring(13,data[0].text.indexOf('@'));
+        let url = "https://"+data[0].text.substring(data[0].text.indexOf("t."),data[0].text.length);
+        let text = data[0].text.substring(data[0].text.indexOf(':')+1,data[0].text.indexOf('Read'));
         let title = text.split('-')[0];
-        let msg = ": Got tweet" + " with >>\n" + " ID: "+id + "\n Text: "+text;
+        let msg = ": Got tweet with >>\n" + " ID: "+id + "\n Text: "+text;
         logger.log(logger.info,msg);
         goodreads.getCover(title,function(cover){
             res.render('index',{text,cover,url});
@@ -37,7 +37,6 @@ app.get('/contest', function(req, res){
     let data = require('./public/assets/data.json');
     res.render('contest',{data});
 });
-
 
 app.listen(port || 5000,function(){
     logger.log(logger.info, 'Started web service on ' + this.address().port );
