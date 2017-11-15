@@ -81,15 +81,15 @@ let wsirBot = {
             }
 
             // Post the tweet message has been composed
-            // Twitter.post("statuses/update", params, function(err, data) {
-            //     // Check if error is present, if not continue
-            //      if (!err) {
-            //         let message = " Tweet data: " + "ID: " + data.id +" TEXT: " +data.text +" CREATED_AT: " +data.created_at;
-            //         logger.log(logger.info, message);
-            //      } else {
-            //         logger.log(logger.error, err);
-            //      }
-            // });
+            Twitter.post("statuses/update", params, function(err, data) {
+                // Check if error is present, if not continue
+                 if (!err) {
+                    let message = " Tweet data: " + "ID: " + data.id +" TEXT: " +data.text +" CREATED_AT: " +data.created_at;
+                    logger.log(logger.info, message);
+                 } else {
+                    logger.log(logger.error, err);
+                 }
+            });
         });
     }
 }
@@ -97,7 +97,7 @@ let wsirBot = {
 // Launch the application
 wsirBot.checkPost(function(answer){
     // One more check as Heroku does random restarts.
-    if(!answer){
+    if(answer){
         logger.log(logger.warn, "Skiped posting. Found tweet.");
     }else{
         logger.log(logger.warn,  "No tweet found after restart app.");
