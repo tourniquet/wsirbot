@@ -1,6 +1,6 @@
 {
   "name": "WhatShouldIRead",
-  "version": "2.0.0",
+  "version": "2.1.0",
   "description": "A Twitter bot that offers suggestion on what to read using Goodreads api",
   "main": "bot.js",
   "scripts": {
@@ -15,6 +15,7 @@
   "license": "ISC",
   "dependencies": {
     "chai": "^4.1.2",
+    "chai-as-promised": "^7.1.1",
     "ejs": "^2.5.7",
     "express": "^4.15.4",
     "goodreads": "^0.1.0",
