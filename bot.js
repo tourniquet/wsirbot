@@ -63,9 +63,9 @@ let wsirBot = {
                     let len = book.author.length / 2;
                     let authorStr = book.author.substring(0, len);
                     authorStr += "...";
-                    params.status = "Today's pick: " + book.title +
-                        "-" + authorStr +
-                        " @ "+ book.url + tags;
+                    params.status = "Book of the day is: " + book.title +
+                        " by " + authorStr +
+                        ". Read more at " + book.url + tags;
                     logger.log(logger.info, " Got new status");
                     if (params.status.length >= 280) {
                         logger.log(logger.warn, " New status still to long, getting a new book.");
