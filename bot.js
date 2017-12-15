@@ -4,7 +4,6 @@ let config = require("./lib/config.js");
 let goodreads = require("./lib/goodread.js");
 let log = require('./lib/logger.js');
 
-
 // Pass the configuration to Twitter app
 let Twitter = new twit(config.config_twitter);
 let logger = new log();
@@ -46,12 +45,12 @@ let wsirBot = {
                 let book = data;
     
                 // Compose message to post
-                let msg = "Today's pick: " + book.title +
-                    "-" + book.author +
+                let msg = "Book of the day is: " + book.title +
+                    " by " + book.author +
                     ". Read more at ";
                     msg+=book.url
                     
-                const tags = " #wsir #book #WhatShouldIRead";
+                const tags = " #wsir #book #books #WhatShouldIRead";
     
                 let params = {
                     q: "",
