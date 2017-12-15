@@ -4,7 +4,7 @@
   "description": "A Twitter bot that offers suggestion on what to read using Goodreads api",
   "main": "bot.js",
   "scripts": {
-    "start": "node server.js",
+    "start": "node bot.js",
     "test": "mocha ./tests"
   },
   "repository": {
